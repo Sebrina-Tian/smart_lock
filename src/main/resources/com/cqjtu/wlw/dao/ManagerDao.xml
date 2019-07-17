@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.wlw.dao.ManagerDao"><!-- 表示该xml和哪个DAO接口对应 -->
+
+    <resultMap type="ManagerInfo" id="cmap">
+        <!-- type:对应的实体类 -->
+        <id column="manager_id" property="managerId"/>
+        <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+        <result column="manager_name" property="managerName" />
+        <result column="manager_password" property="managerPassword" />
+
+    </resultMap>
+
+    <select id="getManagerInfoById" parameterType="ManagerInfo" resultMap="cmap">
+		select * from manager_info where manager_id=#{managerId}
+	</select>
+
+    <!-- <select id="getStudentInfos" resultType="List" resultMap="stumap">
+        select * from student_info; </select> -->
+
+    <select id="getManagerInfos" parameterType="ManagerInfo"
+            resultType="List" resultMap="cmap">
+        select * from manager_info<!-- 只用姓名查询 -->
+        <where>
+            <if test="managerName != null and managerName !=''">
+                and manager_name like #{managerName}
+            </if>
+        </where>
+    </select>
+
+    
+</mapper>

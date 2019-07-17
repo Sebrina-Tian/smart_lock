@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.wlw.dao.WorkerDao"><!-- 表示该xml和哪个DAO接口对应 -->
+
+    <!-- 配置使自定义的DAO接口生效的方法 -->
+    <!-- 配置addStudentInfo方法 -->
+    <insert id="addWorkerInfo" parameterType="WorkerInfo">
+        <!-- insert方法，标签id和接口方法名相同，方法的形参的类型 -->
+        insert into worker_info(worker_id,worker_name,worker_password,worker_sex,worker_phone,worker_addr,worker_area,worker_grade)
+        values(#{workerId},#{workerName},#{workerPassword},#{workerSex},#{workerPhone},#{workerAddr},#{workerArea},#{workerGrade})
+        <!-- 表示接口的addStudentInfo方法要执行的sql语句，#{}表示从方法的形参里取值 -->
+    </insert>
+
+    <!-- 配置deleteStudentInfo方法 -->
+    <delete id="deleteWorkerInfo" parameterType="WorkerInfo">
+		delete from
+		worker_info where worker_id = #{workerId}
+	</delete>
+
+    <!-- 配置updateStudentInfo方法 -->
+    <update id="updateWorkerInfo" parameterType="WorkerInfo">
+		update worker_info
+		set worker_name = #{workerName},worker_password=#{workerPassword},worker_sex = #{workerSex},worker_phone = #{workerPhone},
+		worker_area=#{workerArea},worker_addr = #{workerAddr},lock_id= #{lock_id}
+		where worker_id = #{workerId}
+	</update>
+
+
+    <resultMap type="WorkerInfo" id="wmap">
+        <!-- type:对应的实体类 -->
+        <id column="worker_id" property="workerId"/>
+        <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+        <result column="worker_name" property="workerName" />
+        <result column="worker_password" property="workerPassword" />
+        <result column="worker_sex" property="workerSex" />
+        <result column="worker_phone" property="workerPhone" />
+        <result column="worker_addr" property="workerAddr" />
+        <result column="worker_area" property="workerArea" />
+        <result column="worker_grade" property="workerGrade" />
+    </resultMap>
+
+    <select id="getWorkerInfoById" parameterType="WorkerInfo" resultMap="wmap">
+		select * from worker_info where worker_id=#{workerId}
+	</select>
+
+    <!-- <select id="getStudentInfos" resultType="List" resultMap="stumap">
+        select * from student_info; </select> -->
+
+    <select id="getWorkerInfos" parameterType="WorkerInfo"
+            resultType="List" resultMap="wmap">
+        select * from worker_info<!-- 只用姓名和电话查询 -->
+        <where>
+            <if test="workerName != null and workerName !=''">
+                and worker_name like #{workerName}
+            </if>
+            <if test="workerPhone != null and workerPhone != ''">
+                and worker_phone like #{workerPhone}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.wlw.dao.FamilyDao"><!-- 表示该xml和哪个DAO接口对应 -->
+
+
+    <!-- 配置使自定义的DAO接口生效的方法 -->
+    <!-- 配置addStudentInfo方法 -->
+    <insert id="addFamilyInfo" parameterType="FamilyInfo">
+        <!-- insert方法，标签id和接口方法名相同，方法的形参的类型 -->
+        insert into family_info(member_id,member_name,member_photo,client_id)
+        values(#{memberId},#{memberName},#{memberPhoto},#{clientId})
+        <!-- 表示接口的addStudentInfo方法要执行的sql语句，#{}表示从方法的形参里取值 -->
+    </insert>
+
+    <!-- 配置deleteStudentInfo方法 -->
+    <delete id="deleteFamilyInfo" parameterType="FamilyInfo">
+		delete from
+		family_info where member_id = #{memberId}
+	</delete>
+
+    <!-- 配置updateStudentInfo方法 -->
+    <update id="updateFamilyInfo" parameterType="FamilyInfo">
+		update family_info
+		set member_name = #{memberName},member_photo=#{memberPhoto},client_id= #{clientId}
+		where member_id = #{memberId}
+	</update>
+
+
+    <resultMap type="FamilyInfo" id="fmap">
+        <!-- type:对应的实体类 -->
+        <id column="member_id" property="memberId"/>
+        <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+        <result column="member_name" property="memberName" />
+        <result column="member_photo" property="memberPhoto" />
+        <association property="clientInfo" javaType="clientInfo">
+            <!-- property="school"定义在是bean中familyInfo的外键 -->
+            <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
+            <id column="client_id" property="clientId"/><!-- 主键 -->
+            <result column="client_name" property="clientName"/><!-- 非主键 -->
+            <result column="client_password" property="clientPassword"/>
+            <result column="client_sex" property="clientSex"/><!-- 非主键 -->
+            <result column="client_addr" property="clientAddr"/><!-- 非主键 -->
+            <result column="client_phone" property="clientPhone"/><!-- 非主键 -->
+            <result column="client_photo" property="clientPhoto"/><!-- 非主键 -->
+            <result column="lock_id" property="lockId"/><!-- 非主键 -->
+        </association>
+    </resultMap>
+
+    <select id="getFamilyInfoById" parameterType="FamilyInfo" resultMap="fmap">
+		select * from family_info where member_id=#{memberId}
+	</select>
+
+    <!-- <select id="getStudentInfos" resultType="List" resultMap="fmap">
+        select * from student_info; </select> -->
+
+    <select id="getFamilyInfos" parameterType="FamilyInfo"
+            resultType="List" resultMap="fmap">
+        select * from family_info<!-- 只用姓名查询 -->
+        left outer join client_info<!-- left outer join:把client相关内容左连接到family_info表 -->
+        on family_info.client_id = client_info.client_id
+        <where>
+            <if test="memberName != null and memberName !=''">
+                and member_name like #{memberName}
+            </if>
+            <if test="clientId != null and clientId !=''">
+                and client_id like #{clientId}
+            </if>
+        </where>
+    </select>
+    <select id="getFamilyCount" parameterType="FamilyInfo"
+            resultType="Long"><!-- 计算出查询有多少条记录，为翻页做记号 -->
+        select count(*) from family_info
+        <where>
+            <if test="familyId != null and familyId != 0">
+                and member_id = #{memberId}
+            </if>
+            <if test="memberName != null and memberName !=''">
+                and member_name like #{memberName}
+            </if>
+            <if test="clientId != null and clientId != ''">
+                and client_id like #{clientId}
+            </if>
+        </where>
+    </select>
+
+</mapper>

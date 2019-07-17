@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<h3>所有文件</h3>
+<table>
+    <c:forEach items="${list }" var="f">
+        <tr>
+            <td>${f.fileId }</td>
+            <td>${f.fileName }</td>
+            <td><a href="file/download.d?fileId=${f.fileId }">下载</a></td>
+        </tr>
+    </c:forEach>
+</table>
+
+</body>
+</html>

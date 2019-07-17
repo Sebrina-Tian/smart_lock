@@ -1,0 +1,14 @@
+<table align="center" style="width: 720px" id="files" class="table table-bordered table-hover" xmlns:c="">
+    <tr>
+        <th>编号</th>
+        <th>文件名</th>
+        <th>文件保存路径</th>
+    </tr>
+    <c:forEach items="${files }" var="f">
+        <tr>
+            <td>${f.fileId }</td>
+            <td>${f.fileName }</td>
+            <td>${f.fileUrl }</td>
+        </tr>
+    </c:forEach>
+</table>
