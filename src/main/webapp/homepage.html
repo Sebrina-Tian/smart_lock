@@ -15,10 +15,8 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 		<!-- Font awesome css -->
-
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/linecons.css">
-
 		<link rel="stylesheet" href="inc/strip/css/strip.css">
 		<!-- Owl carousel 2 css -->
 		<link rel="stylesheet" href="css/owl.carousel.css">
@@ -26,6 +24,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<!-- 警告弹窗 -->
 		<link rel="stylesheet" href="css/responsive.css">
+
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
 		<script type="text/javascript">
@@ -113,7 +112,7 @@
 							<div class="popup" id="popup">
 								<div class="popup-inner">
 									<div class="popup__photo">
-										<img src="img/slide.jpg" alt="">
+										<img src="img/slide.jpg" src="img/slide.jpg" alt="">
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">登 录</h1>
@@ -152,8 +151,9 @@
 													<a href="#regpopup" class="button">还没有账号？点我注册</a>
 												</div>
 												<div class="col-sm-5">
-													<button class="btn btn-primary" type="submit" id="btn1">登录</button>&nbsp;
-													<button class="btn btn-danger" data-dismiss="modal">取消</button>
+													<button class="btn btn-primary" type="submit" id="btn1">登录</button>
+													<a class="btn btn-danger btn-lg" href="#" style="color: snow">取消</a>
+
 												</div>
 											</div>
 
@@ -171,7 +171,7 @@
 							<div class="popup" id="regpopup">
 								<div class="popup-inner">
 									<div class="popup__photo">
-										<img src="img/slide.jpg" alt=""/>
+										<img src="img/slide.jpg" src="img/slide.jpg" alt=""/>
 									</div>
 
 									<div class="popup__text">
@@ -198,21 +198,23 @@
 											</div>
 
 
-											</br>
 											<div class="row">
 												<div class="col-sm-7">
 													<a href="#popup" class="button">已有账号？点我登录</a>
 												</div>
 
 												<div class="col-sm-5">&nbsp;&nbsp;&nbsp;
-													<button class="btn btn-primary" type="submit" onclick="checkAll()">注册</button>&nbsp;
-													<button class="btn btn-danger" data-dismiss="modal" onclick="cancel()">取消</button>
+													<!--button class="btn btn-primary" href="#popup" onclick="checkAll()">注册</button>&nbsp;
+													<button class="btn btn-danger" data-dismiss="modal" onclick="cancel()">取消</button-->
+													<a class="btn btn-primary btn-lg" href="#popup" style="color: snow" onclick="checkAll()">注册</a>
+													<a class="btn btn-danger btn-lg" href="#" style="color: snow">取消</a>
 												</div>
 											</div>
 
 										</form>
 										<!--登录验证-->
-										<script type="text/javascript"> function cancel() {
+										<script type="text/javascript">
+											function cancel() {
 											$("#msg_phone").html("");
 											$("#msg_pwd").html("");
 											$("#msg_repwd").html("");
@@ -264,7 +266,7 @@
 							<div class="popup" id="facepopup">
 								<div class="popup-inner">
 									<div class="popup__photo">
-										<img src="img/slide.jpg" alt="">
+										<img src="img/slide.jpg" src="img/slide.jpg" alt="">
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">录入信息</h1>
