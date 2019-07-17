@@ -1,280 +1,254 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>MONSTER | WORKER</title>
-		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="../css/style1.css">
-		<link rel="stylesheet" href="../css/fontawesome-all.min.css">
-		<script src="../js/jquery.min.js"></script>
-		<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>MONSTER | WORKER</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../css/style1.css">
+    <link rel="stylesheet" href="../css/fontawesome-all.min.css">
+    <!-- bg -->
+    <link rel="stylesheet" href="../css/worker_bg.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+
+
+</head>
+
+<body>
+
+    <a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">go home</a>
+
+
+    <div class="services">
+        <div class="container">
+            <h1>门禁系统维修请求表</h1>
+            <div class="bar">
+                <i class="fa fa-table tm-nav-fa-icon"></i>
+            </div>
+        </div><!-- /container -->
+    </div><!-- /services -->
+
+
+    </br></br></br></br>
+    <div class="table-b" style="text-align:center">
+        <table border="1" cellpadding="3" cellspacing="0" style="width: 66%;margin:auto">
+            <div class="divcsssss">
+                <tr>
+                    <td width="80"><strong>工号</strong></td>
+                    <td width="81"><strong>姓名</strong></td>
+                    <td width="80"><strong>绩效</strong></td>
+                    <td width="81"><strong>说明</strong></td>
+                </tr>
+
+                <tr>
+                    <td height="30"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </div>
+        </table>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+            <br/></br></br></br><br/>
+
+
+            <!-- 查询区域下拉菜单1 -->
+            <div class="form-group">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>区县</label>
+                <input id="s2" name="teacherAcademic" value="${teacheracademiccondition }" type="hidden"></input>
+                <!--  -->
+                <select id="s3" class="tm-select" style="color: lightgray;">
+                    <option value="江北区">江北区</option>
+                    <option value="沙坪坝区">沙坪坝区</option>
+                    <option value="南岸区">南岸区</option>
+                    <option value="渝北区">渝北区</option>
+                    <option value="北碚区">北碚区</option>
+                </select>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                <label>小区</label>
+                <input id="s4" name="teacherAcademic" value="${teacheracademiccondition }" type="hidden"></input>
+                <!-- -->
+                <select id="s5" class="tm-select" style="color: lightgray;">
+                    <option value="一区">一区</option>
+                    <option value="二区">二区</option>
+                    <option value="三区">三区</option>
+                    <option value="四区">四区</option>
+                    <option value="五区">五区</option>
+                </select>
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label>接单状态</label>
+                <input id="s" name="teacherAcademic" value="${teacheracademiccondition }" type="hidden"></input>
+                <!-- 输入学院编号查询，也是与后台接口，隐藏了 -->
+                <select id="s1" class="tm-select" style="color: lightgray;">
+                    <option value="接单">已接单</option>
+                    <option value="未接">未接单</option>
+                </select>
+
+
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#" class="btn btn-primary" data-nav-link="#tmNavLink2">查询</a>
+                <!--<button type="submit" class="btn btn-primary">查询</button>-->
+            </div>
+            <!-- 查询区域下拉菜单1 over -->
+
+
+            <!-- 获取数据库区域名，并动态注入下拉框 -->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $(".selectpicker").selectpicker({ //每次页面刷新时，选择框重置
+                        noneSelectedText: '请选择学院'
+                    }); //设置初始显示字体
+                    $('.selectpicker').selectpicker('val', ''); //空一行位置显示：请选择
+                    $('.selectpicker').selectpicker('refresh'); //动态加载一条一条刷新数据
+                });
+                $("#s1").change(function () {
+                    s1 = $('#s1 option:selected').val(); //获得select：s1选中值的value
+                    $("#s").val(s1) //s1复值给input：s
+                })
+            </script>
+
+
+            <!-- 表格 -->
+
+            <table class="text-center table table-bordered table-hovered">
+                <tr>
+                    <th>区-小区</th>
+                    <th>地址（门牌）</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>操作</th>
+                </tr>
+
+                <tr>
+                    <td>${t.teacherId }</td>
+                    <td>${t.teacherName }
+                        <span data-toggle="modal" data-target="#myModal${i.index }" class="glyphicon glyphicon-search"
+                              aria-hidden="true"></span>
+                    </td>
+                    <td>${t.teacherNumber }</td>
+                    <td>${t.teacherAcademic }</td>
+                    <td>
+                        <a class="btn btn-success" href="${basePath }teacher/update.d?teacherId=${t.teacherId }">接单</a>
+                        <button id="del${i.index }" class="btn btn-danger">维修完成</button>
+                    </td>
+                </tr>
+            </table>
+            <!-- 表格完 -->
+
+
+        </div><!-- 栅格8/12完 -->
+
+        <div class="col-md-2"></div>
+
+
+    </div><!-- row完 -->
+
+
+    </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 
 
 
-	</head>
+<div class="footer">
 
-	<body>
-    <a class="button" style="float: right;font-size:20px;color:white"   href="../homepage.html">go home</a>
-		<style type="text/css">
-			body {
+    <div class="container">
 
-				font-size: 12px;
+        <div class="row">
 
-				font-family: "宋体";
+            <br><br><br>
 
-				background-image: url(img/constructive_bg_01.jpg);
+            <div class="team">
 
-				background-repeat: repeat-x;
+                <h1>后勤维修人员一览表</h1>
+                <section id="team-members" class="section-padding text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/wang.jpg" alt="" />
+                                    <p>维修人员-姑</p>
+                                    <p>Lead Developer</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team" align="center">
+                                    <img src="../img/chen.jpg" alt=""/>
+                                    <p>维修人员-诺木叶波</p>
+                                    <p>3D Model Designer</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/xia.jpg" alt=""/>
+                                    <p>维修人员-何宝荣</p>
+                                    <p>Master of All Trade</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/tian.jpg" alt=""/>
+                                    <p>维修人员-假老练</p>
+                                    <p>Manages Money</p>
+                                </div>
+                            </div>
+                        </div>
 
-				COLOR: #0C2B30;
+                        <div class="row">
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/zuo.jpg" alt=""/>
+                                    <p>维修人员-pipshy</p>
+                                    <p>Lead Developer</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/lei.jpg" alt=""/>
+                                    <p>维修人员-鱼眼镜头</p>
+                                    <p>3D Model Designer</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/liao.jpg" alt=""/>
+                                    <p>维修人员-黎耀辉</p>
+                                    <p>Master of All Trade</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 wow zoomIn">
+                                <div class="single-team"  align="center">
+                                    <img src="../img/zhou.jpg" alt=""/>
+                                    <p>维修人员-慢慢</p>
+                                    <p>Manages Money</p>
+                                </div>
+                            </div>
+                        </div>
 
-			}
-		</style>
+                    </div>
+                </section> <!-- End team members -->
+            </div><!-- /container -->
+        </div><!-- /.h-recent-work -->
+    </div>
 
-
-		<div class="services">
-			<div class="container">
-				<h1>门禁系统维修请求表</h1>
-				<div class="bar">
-					<i class="fa fa-table tm-nav-fa-icon"></i>
-				</div>
-			</div><!-- /container -->
-		</div><!-- /services -->
-		
-		
-		</br></br></br></br>
-		<div class="table-b" style="text-align:center">
-			<table border="1" cellpadding="3" cellspacing="0" style="width: 66%;margin:auto">
-				<div class="divcsssss">
-					<tr>
-						<td width="80"><strong>工号</strong></td>
-						<td width="81"><strong>姓名</strong></td>
-						<td width="80"><strong>绩效</strong></td>
-						<td width="81"><strong>说明</strong></td>
-					</tr>
-
-					<tr>
-						<td height="30"></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</div>
-			</table>
-		</div>
-
-
-			<div class="row">
-				<div class="col-md-2">
-					
-				</div>
-				<div class="col-md-8">
-					<br/></br></br></br><br/>
-					
-					
-				
-					<!-- 查询区域下拉菜单1 -->
-					<div class="form-group">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<label for="schoolshow">区县</label>
-						<input id="s" name="teacherAcademic" value="${teacheracademiccondition }" type="hidden"></input>
-						<!--  -->
-						<select id="s1" class="tm-select" style="color: lightgray;">
-							<option value="江北区">江北区</option>
-							<option value="沙坪坝区">沙坪坝区</option>
-							<option value="南岸区">南岸区</option>
-							<option value="渝北区">渝北区</option>
-							<option value="北碚区">北碚区</option>
-						</select>
-
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-						<label for="schoolshow">小区</label>
-						<input id="s" name="teacherAcademic" value="${teacheracademiccondition }" type="hidden"></input>
-						<!-- -->
-						<select id="s1" class="tm-select" style="color: lightgray;">
-							<option value="一区">一区</option>
-							<option value="二区">二区</option>
-							<option value="三区">三区</option>
-							<option value="四区">四区</option>
-							<option value="五区">五区</option>
-						</select>
-						
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<label for="schoolshow">接单状态</label>
-						<input id="s" name="teacherAcademic" value="${teacheracademiccondition }" type="hidden"></input>
-						<!-- 输入学院编号查询，也是与后台接口，隐藏了 -->
-						<select id="s1" class="tm-select" style="color: lightgray;">
-							<option value="接单">已接单</option>
-							<option value="未接">未接单</option>
-						</select>
-						
-
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#" class="btn btn-primary" data-nav-link="#tmNavLink2">查询</a>
-						<!--<button type="submit" class="btn btn-primary">查询</button>-->
-					</div>
-					<!-- 查询区域下拉菜单1 over -->
-					
-					
-					<!-- 获取数据库区域名，并动态注入下拉框 -->
-					<script type="text/javascript">
-						$(document).ready(function() {
-							$(".selectpicker").selectpicker({ //每次页面刷新时，选择框重置
-								noneSelectedText: '请选择学院'
-							}); //设置初始显示字体
-							$('.selectpicker').selectpicker('val', ''); //空一行位置显示：请选择
-							$('.selectpicker').selectpicker('refresh'); //动态加载一条一条刷新数据					  
-						});
-						$("#s1").change(function() {
-							s1 = $('#s1 option:selected').val(); //获得select：s1选中值的value
-							$("#s").val(s1) //s1复值给input：s
-						})
-					</script>
+</div><!-- /footer -->
 
 
-
-
-
-
-
-					<!-- 表格 -->
-
-					<table class="text-center table table-bordered table-hovered">
-						<tr>
-							<th>区-小区</th>
-							<th>地址（门牌）</th>
-							<th>姓名</th>
-							<th>电话</th>
-							<th>操作</th>
-						</tr>
-					
-							<tr>
-								<td>${t.teacherId }</td>
-								<td>${t.teacherName }
-								<span data-toggle="modal" data-target="#myModal${i.index }" class="glyphicon glyphicon-search"
-									 aria-hidden="true"></span>
-								</td>
-								<td>${t.teacherNumber }</td>
-								<td>${t.teacherAcademic }</td>
-								<td>
-									<a class="btn btn-success" href="${basePath }teacher/update.d?teacherId=${t.teacherId }">接单</a>
-									<button id="del${i.index }" class="btn btn-danger">维修完成</button>
-								</td>							
-							</tr>	
-					</table>
-					<!-- 表格完 -->
-
-					
-
-				</div><!-- 栅格8/12完 -->
-				
-				<div class="col-md-2"></div>
-				
-				
-				
-			</div><!-- row完 -->
-		
-
-			</div><!-- /container -->
-
-			</div><!-- /services -->
-
-
-			</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
-
-
-
-
-			<div class="footer">
-
-				<div class="container">
-
-					<div class="row">
-
-						<br><br><br>
-
-						<div class="team">
-
-							<h1>后勤维修人员一览表</h1>
-							<section id="team-members" class="section-padding text-center">
-								<div class="container">
-									<div class="row">
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/wang.jpg" alt="">
-												<h2>维修人员-姑</h2>
-												<p>Lead Developer</p>
-											</div>
-										</div>
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/chen.jpg" alt="">
-												<h2>维修人员-诺木业波</h2>
-												<p>3D Model Designer</p>
-											</div>
-										</div>
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/xia.jpg" alt="">
-												<h2>维修人员-何宝荣</h2>
-												<p>Master of All Trade</p>
-											</div>
-										</div>
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/tian.jpg" alt="">
-												<h2>维修人员-假老练</h2>
-												<p>Manages Money</p>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/zuo.jpg" alt="">
-												<h2>维修人员-pipshy</h2>
-												<p>Lead Developer</p>
-											</div>
-										</div>
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/lei.jpg" alt="">
-												<h2>维修人员-鱼眼镜头</h2>
-												<p>3D Model Designer</p>
-											</div>
-										</div>
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/liao.jpg" alt="">
-												<h2>维修人员-黎耀辉</h2>
-												<p>Master of All Trade</p>
-											</div>
-										</div>
-										<div class="col-sm-3 wow zoomIn">
-											<div class="single-team">
-												<img src="../img/zhou.jpg" alt="">
-												<h2>维修人员-慢慢</h2>
-												<p>Manages Money</p>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</section> <!-- End team members -->
-						</div><!-- /container -->
-					</div><!-- /.h-recent-work -->
-				</div>
-
-			</div><!-- /footer -->
-
-
-		</body>
+</body>
 </html>
