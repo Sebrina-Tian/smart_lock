@@ -6,7 +6,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Constructive HTML Template</title>
+		<title>Monster | CLIENT</title>
+
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 		<!-- Google web font "Open Sans" -->
 		<link rel="stylesheet" href="../css/fontawesome-all.min.css">
@@ -20,7 +21,6 @@
 		
 		<!-- unpkg视频播放 -->
 		<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-
 		<script type="text/javascript">
 function change() {
     var pic = document.getElementById("preview"),
@@ -79,7 +79,6 @@ function html5Reader(file){
 	
 	
 	</script>
-	>
 	</head>
 
 	<body>
@@ -89,7 +88,7 @@ function html5Reader(file){
 			<div class="loader-section section-left"></div>
 			<div class="loader-section section-right"></div>
 		</div>
-
+		<a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">go home</a>
 		<!-- Page Content -->
 		<div class="container-fluid tm-main">
 			<div class="row tm-main-row">
@@ -211,32 +210,45 @@ function html5Reader(file){
 											<div class="popup" id="popup">
 												<div class="popup-inner">
 													<div class="popup__photo">
-														<img src="../img/constructive_bg_01.jpg" alt="">
+														<img src="../img/slide_2.jpg" alt="">
 													</div>
-													
+													<div class="popup__text">
+														<h1 class="text-center">录入信息</h1>
+														<form class="form-group" action="">
 															<div class="form-group">
-																<div class="row">
-																	<div class=" col-md-7">
-																<label class="zhanghu">请选择上传图片</label>
-																<input class="form-control" type="text" placeholder="">
-																</div>
+																<label for="">输入虚拟姓名</label>
+																<input class="form-control" type="text" placeholder="例如:张三">
+															</div>
+
+
+															<div class="form-group">
+																<label for="">上传人脸图片</label>
+																<!--button class="btn btn-danger" data-dismiss="modal" >选择图片</button-->
 																<form action="">
-																	</br></br></br></br></br></br></br>
-																&nbsp;&nbsp;&nbsp;&nbsp;
-																<input type="file" multiple id="f" type="file" name="f" onchange="change()" >
-																	<img id="preview" alt="" src="" name="pic" class="file_img" style="margin-top: 5px;margin-left: 12px; width: 158px; height: 230px;"/>
-																	
-																		</div>
-																	
-																	</form>
+																	<div class="head-img">
+																		<input type="file" multiple id="f" type="file" name="f" onchange="change()" id="img-upload" />
 																	</div>
-															
-															
-									
+																	<img id="preview" alt="" src="" name="pic" class="file_img" style="margin-top: 2px;margin-left: 12px; width: 150px; height: 120px;" />
+																</form>
+
+															</div>
+
 															</br>
-															
-																								
-														<a class="popup__close" href="#">X</a>
+															<div class="row">
+																<div class="col-sm-9">
+																	<a>请上传清晰的正脸图片 </a>
+																</div>
+
+																<div class="col-sm-3">
+																	<!--a class="btn btn-primary" href="#face">点击体验</a>
+                                                                    <button class="btn btn-primary" type="submit" href="#face">登录</button-->
+																	<input type="button" class="btn btn-primary" value="点击体验" onclick=javascrtpt:jump()>
+																</div>
+															</div>
+
+														</form>
+													</div>
+													<a class="popup__close" href="#">X</a>
 												</div>
 											</div> 
 								</div>
@@ -379,7 +391,7 @@ function html5Reader(file){
 									</select>
 								</div>
 								<div class="col-sm-4" align="right">
-									<a href="$" lianjie" class="btn tm-btn1 tm-text-shadow">查询</a>
+									<a href="$" lianjie class="btn tm-btn1 tm-text-shadow">查询</a>
 								</div>
 							</div>
 
@@ -507,11 +519,10 @@ function html5Reader(file){
 										<div class="form-group">
 											<lable>评分
 											</br></br>
-											<input type="text" id="contact_addr2" name="contact_addr" class="form-control" placeholder="请输入评分(0-10)" required="">
-										</lable>
-										</div>
+											<input type="text" id="contact_addr" name="contact_addr" class="form-control" placeholder="请输入评分(0-10)" required="">
+										</lable></div>
 										<div class="form-group">
-											<textarea id="contact_message2" name="contact_message" class="form-control" rows="9" placeholder="请在此输入反馈信息" required></textarea>
+											<textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="请在此输入反馈信息" required></textarea>
 										</div>
 										<button type="submit" class="btn tm-btn-submit tm-btn ml-auto">提交</button>
 									</form>

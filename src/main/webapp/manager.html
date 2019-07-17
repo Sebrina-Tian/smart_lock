@@ -6,16 +6,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Constructive HTML Template</title>
+		<title>MONSTER | MANAGER</title>
 
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
 		<!-- Google web font "Open Sans" -->
-		<link rel="stylesheet" href="css/fontawesome-all.min.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-		<link rel="stylesheet" type="text/css" href="slick/slick.css" />
-		<link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-		<link rel="stylesheet" href="css/tooplate-style.css">
+		<link rel="stylesheet" href="../css/fontawesome-all.min.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/magnific-popup.css" />
+		<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
+		<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
+		<link rel="stylesheet" href="../css/tooplate-style.css">
 		<!-- unpkg视频播放 -->
 		<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 
@@ -27,6 +27,8 @@
 	</head>
 
 
+
+
 	<body>
 		<!-- Loader -->
 		<div id="loader-wrapper">
@@ -36,7 +38,7 @@
 		</div>
 
 
-
+		<a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">go home</a>
 		<!-- Page Content -->
 		<div class="container-fluid tm-main">
 			<div class="row tm-main-row">
@@ -108,8 +110,8 @@
 									<a href="#" class="btn tm-btn3 tm-font-big" data-nav-link="#tmNavLink2">查询</a>
 								</div>
 								<div class="graph" style="margin-top: 0.8rem;">
-									<div class="tables" style="font-size: 1rem;margin: 4px,0;">
-										<table class="table table-hover" style="-ms-text-size-adjust: ;">
+									<div class="tables" style="font-size: 1rem;margin: 4px;">
+										<table class="table table-hover" style="-ms-text-size-adjust: auto">
 											<thead>
 												<tr style="text-align: center;">
 													<th>#</th>
@@ -179,8 +181,8 @@
 								<h1 class="tm-text-shadow" align="left">订单处理中..</h1>
 							</header>
 							<div class="graph" style="margin-top: 0.8rem;">
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
+								<div class="tables" style="font-size: 1rem;margin: 5px;">
+									<table class="table table-hover" style="-ms-text-size-adjust: auto">
 										
 										<thead>
 											<tr style="text-align: center;">
@@ -253,8 +255,8 @@
 								<button type="button" class="btn tm-btn3">添加职工</button>
 							</div>
 							<div class="graph" style="margin-top: 0.5rem;">
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
+								<div class="tables" style="font-size: 1rem;margin: 5px;">
+									<table class="table table-hover" style="-ms-text-size-adjust: auto">
 										
 										<thead>
 											<tr style="text-align: center;">
@@ -325,8 +327,8 @@
 							</header>
 							<div class="graph" style="margin-top: 0.8rem;">
 								 
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
+								<div class="tables" style="font-size: 1rem;margin: 5px;">
+									<table class="table table-hover" style="-ms-text-size-adjust: auto">
 										
 										<thead style="text-align: center;">
 											<tr>
@@ -396,8 +398,8 @@
 							</header>
 							<div class="graph" style="margin-top: 0.8rem;">
 								 
-								<div class="tables" style="font-size: 1rem;margin: 5px,0;">
-									<table class="table table-hover" style="-ms-text-size-adjust: ;">
+								<div class="tables" style="font-size: 1rem;margin: 5px;">
+									<table class="table table-hover" style="-ms-text-size-adjust: auto">
 										
 										<thead>
 											<tr style="text-align: center;">
@@ -476,29 +478,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<div id="preload-01"></div>
 			<div id="preload-02"></div>
 			<div id="preload-03"></div>
 			<div id="preload-04"></div>
 
-			<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-			<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-			<script type="text/javascript" src="js/jquery.backstretch.min.js"></script>
-			<script type="text/javascript" src="slick/slick.min.js"></script> <!-- Slick Carousel -->
+			<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+			<script type="text/javascript" src="../js/jquery.magnific-popup.min.js"></script>
+			<script type="text/javascript" src="../js/jquery.backstretch.min.js"></script>
+			<script type="text/javascript" src="../slick/slick.min.js"></script> <!-- Slick Carousel -->
 
 			<script>
 				var sidebarVisible = false;
@@ -583,7 +571,7 @@
 
 					// Change background image
 					var bgImg = currentNavItem.data("bgImg");
-					$.backstretch("img/" + bgImg);
+					$.backstretch("../img/" + bgImg);
 
 				}
 
@@ -649,7 +637,7 @@
 						// Set up background first page
 						var bgImg = $("#tmNavLink1").data("bgImg");
 
-						$.backstretch("img/" + bgImg, {
+						$.backstretch("../img/" + bgImg, {
 							fade: 500
 						});
 
@@ -667,5 +655,6 @@
 					}
 				});
 			</script>
+		</div>
 	</body>
 </html>
