@@ -3,6 +3,7 @@ package com.cqjtu.wlw;
 import com.cqjtu.wlw.dao.ClientDao;
 import com.cqjtu.wlw.pojo.ClientInfo;
 import com.cqjtu.wlw.pojo.FamilyInfo;
+import com.cqjtu.wlw.pojo.RepairInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,14 +33,14 @@ public class ClientDaoTest {
     @Test
     public void test2() {
         ClientInfo clientInfo = new ClientInfo();
-        clientInfo.setClientId("123");
+        clientInfo.setClientId("1111");
         clientInfo.setClientName("王五");
         clientInfo.setClientPassword("123456");
         clientInfo.setClientSex("1");
         clientInfo.setClientPhone("1852345678");
         clientInfo.setClientAddr("慧园711");
         clientInfo.setClientPhoto("重庆南岸区");
-        clientInfo.setLockId(1);//目前只有1001型号
+        clientInfo.setLockId(1001);//目前只有1001型号
         clientDao.addClientInfo(clientInfo);
     }
     @Test
@@ -85,7 +86,7 @@ public class ClientDaoTest {
         }
     }
     @Test
-    public void test22(){
+    public void test1s2(){
         List<ClientInfo> clients = clientDao.getClients();//按班级号依次查找
         for(ClientInfo client : clients){
             System.out.println("----------------");
@@ -94,6 +95,32 @@ public class ClientDaoTest {
             Set<FamilyInfo> familyInfos = client.getFamilyInfos();
             for(FamilyInfo s : familyInfos){
                 System.out.println("s.name = " + s.getMemberName());
+            }
+            System.out.println("----------------");
+        }
+    }
+    @Test
+    public void test21(){
+        ClientInfo clientInfo = new ClientInfo();
+        clientInfo.setClientId("1");//client_id="1"对应的全部repair记录（1对多）
+        clientInfo = clientDao.getClientInfoById(clientInfo);
+        System.out.println("clientInfo.name = " + clientInfo.getClientName()+"\n---------");
+
+        Set<RepairInfo> repairInfos = clientInfo.getRepairInfos();
+        for(RepairInfo r : repairInfos){
+            System.out.println("repair_id = " + r.getRepairId());
+        }
+    }
+    @Test
+    public void test22(){
+        List<ClientInfo> clients = clientDao.getClients();//按户主号依次查找(返回集合)
+        for(ClientInfo client : clients){
+            System.out.println("----------------");
+            System.out.println("client.name = " + client.getClientName());
+
+            Set<RepairInfo> repairInfos = client.getRepairInfos();
+            for(RepairInfo s : repairInfos){
+                System.out.println("repair.id = " + s.getRepairId());
             }
             System.out.println("----------------");
         }

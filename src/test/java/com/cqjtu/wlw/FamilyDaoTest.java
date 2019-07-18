@@ -34,15 +34,6 @@ public class FamilyDaoTest {
 		//FamilyDao.addfamilyInfo(familyInfo);
 	}
 
-//	@Test
-//	public void test3(){
-//		List<familyInfo> list = FamilyDao.getfamilyInfos();
-//		for(familyInfo s : list){
-//			System.out.println("s.name = " + s.getMemberName());
-//			System.out.println("s.number = " + s.getWorkerNumber());
-//		}
-//	}
-
 	@Test
 	public void test4(){
 		FamilyInfo familyInfo = new FamilyInfo();
