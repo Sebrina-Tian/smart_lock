@@ -33,7 +33,7 @@ public class ClientDaoTest {
     @Test
     public void test2() {
         ClientInfo clientInfo = new ClientInfo();
-        clientInfo.setClientId("1111");
+        clientInfo.setClientId("1122");//----
         clientInfo.setClientName("王五");
         clientInfo.setClientPassword("123456");
         clientInfo.setClientSex("1");
@@ -46,7 +46,7 @@ public class ClientDaoTest {
     @Test
     public void test3(){//注册
         ClientInfo clientInfo = new ClientInfo();
-        clientInfo.setClientId("185244560");
+        clientInfo.setClientId("185244");//----
         clientInfo.setClientPassword("1233422");
         clientInfo.setLockId(1001);
 

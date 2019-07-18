@@ -33,14 +33,14 @@ public class WorkerDaoTest {
 	@Test
 	public void test2(){
 		WorkerInfo WorkerInfo = new WorkerInfo();
-		WorkerInfo.setWorkerId("44565545");
-		WorkerInfo.setWorkerName("王五");
-		WorkerInfo.setWorkerPassword("123456");
+		WorkerInfo.setWorkerId("10001");//不为空
+		WorkerInfo.setWorkerName("addtest");
+		WorkerInfo.setWorkerPassword("123456");//不为空
 		WorkerInfo.setWorkerSex("1");
-		WorkerInfo.setWorkerPhone("1852345678");
+		WorkerInfo.setWorkerPhone("1852345678");//等于id
 		WorkerInfo.setWorkerAddr("慧园711");
-		WorkerInfo.setWorkerArea("重庆南岸区");
-		WorkerInfo.setWorkerGrade((float) 5.0);
+		WorkerInfo.setWorkerArea("重庆南岸区");//默认是："重庆南岸区"
+		WorkerInfo.setWorkerGrade((float) 5.0);//默认5.0不为空，后面可更新
 		workerDao.addWorkerInfo(WorkerInfo);
 	}
 	
@@ -48,8 +48,11 @@ public class WorkerDaoTest {
 	@Test
 	public void test4(){
 		WorkerInfo WorkerInfo = new WorkerInfo();
-		WorkerInfo.setWorkerName("%张%");
+		WorkerInfo.setWorkerName("%张%");//从前端获取
 		WorkerInfo.setWorkerPhone("10%");
+		/**如果是Area地区要对字符串进行裁剪：示例sql = sql.substring(0,sql.length()-1) + ")";//删去sql句末多余的“,”
+		 * 这里模糊查询不用裁剪，前端显示时，可裁剪
+		 */
 		List<WorkerInfo> list = workerDao.getWorkerInfos(WorkerInfo);
 		for(WorkerInfo s : list){
 			System.out.println("s.name = " + s.getWorkerName());
@@ -59,7 +62,7 @@ public class WorkerDaoTest {
 	@Test
 	public void test21(){
 		WorkerInfo workerInfo = new WorkerInfo();
-		workerInfo.setWorkerId("10000");//worker_id="1"对应的全部repair记录（1对多）
+		workerInfo.setWorkerId("10000");//worker_id="10000"对应的全部repair记录（1对多）
 		workerInfo = workerDao.getWorkerInfoById(workerInfo);
 		System.out.println("workerInfo.name = " + workerInfo.getWorkerName()+"\n---------");
 
@@ -69,8 +72,8 @@ public class WorkerDaoTest {
 		}
 	}
 	@Test
-	public void test22(){
-		List<WorkerInfo> workers = workerDao.getWorkers();//按户主号依次查找(返回集合)
+	public void test22(){//controller中：worker/show.d?workerId=...
+		List<WorkerInfo> workers = workerDao.getWorkers();//按worker_id号依次查找(返回集合)
 		for(WorkerInfo worker : workers){
 			System.out.println("----------------");
 			System.out.println("worker.name = " + worker.getWorkerName());

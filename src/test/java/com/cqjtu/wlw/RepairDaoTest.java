@@ -31,15 +31,16 @@ public class RepairDaoTest {
     @Test
     public void test2(){
         RepairInfo repairInfo = new RepairInfo();
-        repairInfo.setRepairId(123);//id自增
+        //repairInfo.setRepairId(123);//id自增
         repairInfo.setRequestTime("null");
         repairInfo.getClientInfo().setClientId("1");//有外键限制：1、错
-        repairInfo.setReDetail("null");
-        repairInfo.setStartTime("null");
-        repairInfo.setReDetail("null");
-        repairInfo.setRepairGrade((float) 5);//默认
+        //下面可以为空
+        //repairInfo.setReDetail("null");
+        //repairInfo.setStartTime("null");
+        //repairInfo.setReDetail("null");
+        //repairInfo.setRepairGrade((float) 5);//默认
         //repairInfo.getWorkerInfo().setWorkerId("null");//有外键限制
-        //repairDao.addrepairInfo(repairInfo);
+        repairDao.addRepairInfo(repairInfo);
     }
 
     @Test

@@ -37,7 +37,7 @@ public class FamilyDaoTest {
 	@Test
 	public void test4(){
 		FamilyInfo familyInfo = new FamilyInfo();
-		familyInfo.setMemberName("%zhou%");//
+		familyInfo.setMemberName("%zhou%");//controller中：
 		//familyInfo.setMemberPhoto("1%");
 		List<FamilyInfo> list = familyDao.getFamilyInfos(familyInfo);
 		for(FamilyInfo s : list){
