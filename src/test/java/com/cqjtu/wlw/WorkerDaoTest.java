@@ -1,8 +1,11 @@
 package com.cqjtu.wlw;
 
 import java.util.List;
+import java.util.Set;
 
 import com.cqjtu.wlw.dao.WorkerDao;
+import com.cqjtu.wlw.pojo.WorkerInfo;
+import com.cqjtu.wlw.pojo.RepairInfo;
 import com.cqjtu.wlw.pojo.WorkerInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,14 +44,6 @@ public class WorkerDaoTest {
 		workerDao.addWorkerInfo(WorkerInfo);
 	}
 	
-//	@Test
-//	public void test3(){
-//		List<WorkerInfo> list = WorkerDao.getWorkerInfos();
-//		for(WorkerInfo s : list){
-//			System.out.println("s.name = " + s.getWorkerName());
-//			System.out.println("s.number = " + s.getWorkerNumber());
-//		}
-//	}
 	
 	@Test
 	public void test4(){
@@ -59,6 +54,32 @@ public class WorkerDaoTest {
 		for(WorkerInfo s : list){
 			System.out.println("s.name = " + s.getWorkerName());
 			System.out.println("s.number = " + s.getWorkerPhone());
+		}
+	}
+	@Test
+	public void test21(){
+		WorkerInfo workerInfo = new WorkerInfo();
+		workerInfo.setWorkerId("10000");//worker_id="1"对应的全部repair记录（1对多）
+		workerInfo = workerDao.getWorkerInfoById(workerInfo);
+		System.out.println("workerInfo.name = " + workerInfo.getWorkerName()+"\n---------");
+
+		Set<RepairInfo> repairInfos = workerInfo.getRepairInfos();
+		for(RepairInfo r : repairInfos){
+			System.out.println("repair_id = " + r.getRepairId());
+		}
+	}
+	@Test
+	public void test22(){
+		List<WorkerInfo> workers = workerDao.getWorkers();//按户主号依次查找(返回集合)
+		for(WorkerInfo worker : workers){
+			System.out.println("----------------");
+			System.out.println("worker.name = " + worker.getWorkerName());
+
+			Set<RepairInfo> repairInfos = worker.getRepairInfos();
+			for(RepairInfo s : repairInfos){
+				System.out.println("repair.id = " + s.getRepairId());
+			}
+			System.out.println("----------------");
 		}
 	}
 }
