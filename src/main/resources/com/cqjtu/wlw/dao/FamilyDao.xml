@@ -47,7 +47,10 @@
     </resultMap>
 
     <select id="getFamilyInfoById" parameterType="FamilyInfo" resultMap="fmap">
-		select * from family_info where member_id=#{memberId}
+		select * from family_info
+        left outer join client_info<!-- left outer join:把client相关内容左连接到family_info表 -->
+        on family_info.client_id = client_info.client_id
+		where member_id=#{memberId}
 	</select>
 
     <!-- <select id="getStudentInfos" resultType="List" resultMap="fmap">
@@ -62,9 +65,6 @@
             <if test="memberName != null and memberName !=''">
                 and member_name like #{memberName}
             </if>
-            <if test="clientId != null and clientId !=''">
-                and client_id like #{clientId}
-            </if>
         </where>
     </select>
     <select id="getFamilyCount" parameterType="FamilyInfo"
@@ -76,9 +76,6 @@
             </if>
             <if test="memberName != null and memberName !=''">
                 and member_name like #{memberName}
-            </if>
-            <if test="clientId != null and clientId != ''">
-                and client_id like #{clientId}
             </if>
         </where>
     </select>

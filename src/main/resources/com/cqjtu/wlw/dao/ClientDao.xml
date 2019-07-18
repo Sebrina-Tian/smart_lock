@@ -35,32 +35,43 @@
         <result column="client_password" property="clientPassword" />
         <result column="client_sex" property="clientSex" />
         <result column="client_addr" property="clientAddr" />
-        <!--外键lock_id,一对一-->
+        <!--作为lock_info外键lock_id,一对一-->
         <association property="lockInfo" javaType="lockInfo">
             <!-- property="school"定义在是bean中TeacherInfo的外键 -->
             <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
             <id column="lock_id" property="lockId"/><!-- 主键 -->
             <result column="lock_type" property="lockType"/><!-- 非主键 -->
         </association>
-        <!--作为外键client_id,一对多-->
+        <!--作为family_info表外键client_id,一对多-->
         <collection property="familyInfos" ofType="FamilyInfo">
             <id column="member_id" property="memberId"/>
             <result column="member_name" property="memberName"/>
             <result column="member_photo" property="memberPhoto" />
         </collection>
+        <!--作为repair表外键client_id,一对多-->
+        <collection property="repairInfos" ofType="repairInfo">
+            <id column="repair_id" property="repairId"/>
+            <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+            <result column="request_time" property="requestTime" /><!--基本属性-->
+            <result column="start_time" property="startTime" />
+            <result column="repair_detail" property="repairDetail" />
+            <result column="repair_grade" property="repairGrade" />
+        </collection>
     </resultMap>
 
     <select id="getClientInfoById" parameterType="ClientInfo" resultMap="cmap">
-		select * from client_info t1,family_info t2
-		where t1.client_id = t2.client_id and t1.client_id=#{clientId}
+		select * from client_info t1,family_info t2,repair t3
+		where t1.client_id = t2.client_id and t1.client_id=t3.client_id and t1.client_id=#{clientId}
 	</select>
 
-    <!-- <select id="getStudentInfos" resultType="List" resultMap="stumap">
-        select * from student_info; </select> -->
 
     <select id="getClientInfos" parameterType="ClientInfo"
             resultType="List" resultMap="cmap">
-        select * from client_info<!-- 只用姓名和电话查询 -->
+        select * from client_info t1<!-- 只用姓名和电话查询 -->
+            inner join family_info t2<!--内连接2张表-->
+            on t1.client_id = t2.client_id
+            inner join repair t3
+            on t1.client_id = t3.client_id
         <where>
             <if test="clientName != null and clientName !=''">
                 and client_name like #{clientName}
@@ -72,9 +83,17 @@
     </select>
 
     <select id="getClients"  resultMap="cmap">
+        select * from client_info t1
+            inner join family_info t2<!--内连接2张表-->
+                on t1.client_id = t2.client_id
+            inner join repair t3
+                on t1.client_id = t3.client_id
+	</select>
+
+    <!--select id="getClients"  resultMap="cmap">
 		select * from client_info t1
 		left outer join family_info t2
 		on t1.client_id = t2.client_id
-	</select>
+	</select-->
 
 </mapper>

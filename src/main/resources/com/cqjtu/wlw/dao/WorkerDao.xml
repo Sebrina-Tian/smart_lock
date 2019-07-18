@@ -3,7 +3,6 @@
 <mapper namespace="com.cqjtu.wlw.dao.WorkerDao"><!-- 表示该xml和哪个DAO接口对应 -->
 
     <!-- 配置使自定义的DAO接口生效的方法 -->
-    <!-- 配置addStudentInfo方法 -->
     <insert id="addWorkerInfo" parameterType="WorkerInfo">
         <!-- insert方法，标签id和接口方法名相同，方法的形参的类型 -->
         insert into worker_info(worker_id,worker_name,worker_password,worker_sex,worker_phone,worker_addr,worker_area,worker_grade)
@@ -11,13 +10,11 @@
         <!-- 表示接口的addStudentInfo方法要执行的sql语句，#{}表示从方法的形参里取值 -->
     </insert>
 
-    <!-- 配置deleteStudentInfo方法 -->
     <delete id="deleteWorkerInfo" parameterType="WorkerInfo">
 		delete from
 		worker_info where worker_id = #{workerId}
 	</delete>
 
-    <!-- 配置updateStudentInfo方法 -->
     <update id="updateWorkerInfo" parameterType="WorkerInfo">
 		update worker_info
 		set worker_name = #{workerName},worker_password=#{workerPassword},worker_sex = #{workerSex},worker_phone = #{workerPhone},
@@ -37,14 +34,20 @@
         <result column="worker_addr" property="workerAddr" />
         <result column="worker_area" property="workerArea" />
         <result column="worker_grade" property="workerGrade" />
+        <!--作为外键worker_id,一对多-->
+        <collection property="repairInfos" ofType="RepairInfo">
+            <id column="repair_id" property="repairId"/>
+            <result column="request_time" property="requestTime" /><!--基本属性-->
+            <result column="start_time" property="startTime" />
+            <result column="repair_detail" property="repairDetail" />
+            <result column="repair_grade" property="repairGrade" />
+        </collection>
     </resultMap>
 
     <select id="getWorkerInfoById" parameterType="WorkerInfo" resultMap="wmap">
-		select * from worker_info where worker_id=#{workerId}
+		select * from worker_info t1,repair t2
+		where t1.worker_id = t2.worker_id and t1.worker_id=#{workerId}
 	</select>
-
-    <!-- <select id="getStudentInfos" resultType="List" resultMap="stumap">
-        select * from student_info; </select> -->
 
     <select id="getWorkerInfos" parameterType="WorkerInfo"
             resultType="List" resultMap="wmap">
@@ -58,5 +61,11 @@
             </if>
         </where>
     </select>
+
+    <select id="getWorkers"  resultMap="wmap">
+		select * from worker_info t1
+		left outer join repair t2
+		on t1.worker_id = t2.worker_id
+	</select>
 
 </mapper>
