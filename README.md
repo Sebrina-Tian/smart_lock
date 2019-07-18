@@ -5,6 +5,7 @@
 
 7.17
 wang：
+
 增添BaseController.java、BaseBean.java——翻页用（在后面的controller和Info类会继承Base方法）
 
 增添【Repair】Info、Dao、xml、controller、service
