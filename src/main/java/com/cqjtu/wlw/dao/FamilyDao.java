@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface FamilyDao {
     /**
-     * 添加一条学生信息
+     * 添加一条家庭成员信息
      * @param familyInfo {member_id,member_name,member_photo,client_id}
      */
     void addFamilyInfo(FamilyInfo familyInfo);
     /**
-     * 删除一条学生信息
+     * 删除一条家庭成员信息
      * @param familyInfo{memberId }
      */
     void deleteFamilyInfo(FamilyInfo familyInfo);
     /**
-     * 更新学生信息
+     * 更新家庭成员信息
      * @param familyInfo {member_id,member_name,member_photo,client_id}
      */
     void updateFamilyInfo(FamilyInfo familyInfo);
@@ -29,13 +29,13 @@ public interface FamilyDao {
     FamilyInfo getFamilyInfoById(FamilyInfo familyInfo);
 
 //	/**
-//	 * 查询所有学生信息
+//	 * 查询所有家庭成员信息
 //	 * @return
 //	 */
 //	public List<StudentInfo> getStudentInfos();
 
     /**
-     * 根据条件查询学生记录
+     * 根据条件查询家庭成员记录
      * @param familyInfo {studentName 可能为空，可能不为空 studentNumber可能为空，可能不为空}
      * 1.studentName studentNumber都为空 ——> select * from student_info
      * 2.studentName != null --> select * from student_info where student_name like ?

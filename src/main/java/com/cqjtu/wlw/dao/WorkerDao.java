@@ -23,4 +23,5 @@ public interface WorkerDao {
      */
     List<WorkerInfo> getWorkerInfos(WorkerInfo workerInfo);
 
+    List<WorkerInfo> getWorkers();
 }
