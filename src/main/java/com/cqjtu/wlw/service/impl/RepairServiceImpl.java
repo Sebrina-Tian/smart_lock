@@ -64,4 +64,19 @@ public class RepairServiceImpl implements RepairService {
         }
         return null;
     }
+
+    @Override
+    public Long getRepairCount(RepairInfo repairInfo) {
+        //维修id、客户id、报修时间查询
+        if(repairInfo.getRepairId() != null &&!repairInfo.getRepairId().equals("")){
+            repairInfo.setRepairId(repairInfo.getRepairId());
+        }
+        if(repairInfo.getClientInfo().getClientId() != null &&!repairInfo.getClientInfo().getClientId().equals("")){
+            repairInfo.getClientInfo().setClientId("%" + repairInfo.getClientInfo().getClientId() + "%");
+        }
+        if(repairInfo.getRequestTime() != null &&!repairInfo.getRequestTime().equals("")){
+            repairInfo.setRequestTime("%" + repairInfo.getRequestTime() + "%");
+        }
+        return repairDao.getRepairCount(repairInfo);
+    }
 }
