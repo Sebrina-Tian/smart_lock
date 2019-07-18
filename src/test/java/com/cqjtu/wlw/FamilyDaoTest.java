@@ -2,6 +2,7 @@ package com.cqjtu.wlw;
 
 
 import com.cqjtu.wlw.dao.FamilyDao;
+import com.cqjtu.wlw.pojo.ClientInfo;
 import com.cqjtu.wlw.pojo.FamilyInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,28 +27,28 @@ public class FamilyDaoTest {
 		System.out.println(familyInfo.getMemberPhoto());
 	}
 
+	/**
+	 * 插入到family_info
+	 * member_id自增、可忽略
+	 * member_name
+	 * member_photo可为空、update再更新
+	 * member_
+	 */
 	@Test
-	public void test2(){
+	public void addFamilyInfoDaoTest(){
+		//前端获取
 		FamilyInfo familyInfo = new FamilyInfo();
+		ClientInfo clientInfo = new ClientInfo();
+		clientInfo.setClientId("1");
+		//插入到family_info
 		familyInfo.setMemberName("王五");
 		familyInfo.setMemberPhoto("100003");
-		//FamilyDao.addfamilyInfo(familyInfo);
+		familyInfo.setClientId(clientInfo.getClientId());
+		familyDao.addFamilyInfo(familyInfo);
 	}
 
 	@Test
-	public void test4(){
-		FamilyInfo familyInfo = new FamilyInfo();
-		familyInfo.setMemberName("%zhou%");//controller中：
-		//familyInfo.setMemberPhoto("1%");
-		List<FamilyInfo> list = familyDao.getFamilyInfos(familyInfo);
-		for(FamilyInfo s : list){
-			System.out.println("s.name = " + s.getMemberName());
-			System.out.println("s.photo = " + s.getMemberPhoto());
-		}
-	}
-
-	@Test
-	public void test01(){
+	public void getFamilyInfosTest(){
 		FamilyInfo familyInfo = new FamilyInfo();
 		familyInfo.setMemberName("%zhou%");//家庭成员名称模糊查询clientName
 		List<FamilyInfo> familyInfos = familyDao.getFamilyInfos(familyInfo);

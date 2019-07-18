@@ -2,6 +2,7 @@ package com.cqjtu.wlw;
 
 
 import com.cqjtu.wlw.dao.RepairDao;
+import com.cqjtu.wlw.pojo.ClientInfo;
 import com.cqjtu.wlw.pojo.RepairInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +32,8 @@ public class RepairDaoTest {
     @Test
     public void test2(){
         RepairInfo repairInfo = new RepairInfo();
+        ClientInfo clientInfo = new ClientInfo();
+
         //repairInfo.setRepairId(123);//id自增
         repairInfo.setRequestTime("null");
         repairInfo.getClientInfo().setClientId("1");//有外键限制：1、错
@@ -46,7 +49,7 @@ public class RepairDaoTest {
     @Test
     public void test4(){
         RepairInfo repairInfo = new RepairInfo();
-        repairInfo.setRepairId(2);//
+        repairInfo.setRepairId(1);//
         List<RepairInfo> list = repairDao.getRepairInfos(repairInfo);
         for(RepairInfo s : list){
             System.out.println("s.repair_id = " + s.getRepairId());
