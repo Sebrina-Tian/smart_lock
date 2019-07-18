@@ -15,6 +15,12 @@ public class ClientInfo {
     private LockInfo lockInfo;
 
     /**
+     * 一个户主可对应多个维修记录
+     */
+    private Set<RepairInfo> repairInfos;
+
+
+    /**
      * 一个户主下有多个家庭成员
      */
     private Set<FamilyInfo> familyInfos;
@@ -99,5 +105,13 @@ public class ClientInfo {
 
     public void setFamilyInfos(Set<FamilyInfo> familyInfos) {
         this.familyInfos = familyInfos;
+    }
+
+    public Set<RepairInfo> getRepairInfos() {
+        return repairInfos;
+    }
+
+    public void setRepairInfos(Set<RepairInfo> repairInfos) {
+        this.repairInfos = repairInfos;
     }
 }

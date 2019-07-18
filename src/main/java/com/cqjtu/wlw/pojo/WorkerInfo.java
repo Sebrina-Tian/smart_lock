@@ -1,6 +1,8 @@
 package com.cqjtu.wlw.pojo;
 
-public class WorkerInfo {
+import java.util.Set;
+
+public class WorkerInfo extends BaseBean{
     private String workerId;
     private String workerName;
     private String workerPassword;
@@ -9,6 +11,11 @@ public class WorkerInfo {
     private String workerAddr;
     private String workerArea;
     private Float workerGrade;
+
+    /**
+     * 一个工人可对应多个维修记录
+     */
+    private Set<RepairInfo> repairInfos;
 
     public String getWorkerId() {
         return workerId;
@@ -72,5 +79,13 @@ public class WorkerInfo {
 
     public void setWorkerGrade(Float workerGrade) {
         this.workerGrade = workerGrade;
+    }
+
+    public Set<RepairInfo> getRepairInfos() {
+        return repairInfos;
+    }
+
+    public void setRepairInfos(Set<RepairInfo> repairInfos) {
+        this.repairInfos = repairInfos;
     }
 }
