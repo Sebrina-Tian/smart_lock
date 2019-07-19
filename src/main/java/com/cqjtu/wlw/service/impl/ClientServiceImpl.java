@@ -36,7 +36,6 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void delClientInfo(ClientInfo clientInfo) {
         clientDao.deleteClientInfo(clientInfo);
-
     }
 
     @Override
@@ -49,15 +48,14 @@ public class ClientServiceImpl implements ClientService {
      * @return
      */
     @Override
-    public List<ClientInfo> getClientInfos(ClientInfo clientInfo) {
+    public List<ClientInfo> getClientInfos(ClientInfo clientInfo) {//姓名、地址、手机号
         if(clientInfo.getClientName()!= null &&!clientInfo.getClientName().equals("")){
             clientInfo.setClientName("%" + clientInfo.getClientName() + "%");
         }
         if(clientInfo.getClientAddr() != null &&!clientInfo.getClientAddr().equals("")){
             clientInfo.setClientAddr("%" + clientInfo.getClientAddr() + "%");
         }
-        if(clientInfo.getClientPhone() != null &&
-                !clientInfo.getClientPhone().equals("")){
+        if(clientInfo.getClientPhone() != null &&!clientInfo.getClientPhone().equals("")){
             clientInfo.setClientPhone("%" + clientInfo.getClientPhone() + "%");
         }
         return clientDao.getClientInfos(clientInfo);

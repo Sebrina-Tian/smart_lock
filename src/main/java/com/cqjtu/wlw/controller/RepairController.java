@@ -1,12 +1,15 @@
 package com.cqjtu.wlw.controller;
 
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cqjtu.wlw.pojo.UserInfo;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +39,7 @@ public class RepairController extends BaseController{
         //处理请求中的pager.offset
         handleOffset(request);
         repairInfo.setStart(this.getStart());
-        request.setAttribute("Repairnamecondition", repairInfo.getStartTime());
+        request.setAttribute("repairnamecondition", repairInfo.getStartTime());
         request.setAttribute("Repairnumbercondition", repairInfo.getRequestTime());
         request.setAttribute("Clientidcondition", repairInfo.getClientId());
 
@@ -119,4 +122,5 @@ public class RepairController extends BaseController{
         String user_page = a.getUserIdentity();//client、manager、worker
         return user_page;
     }
+
 }

@@ -35,4 +35,7 @@ public interface RepairService {
      * @return
      */
     RepairInfo getRepairById(RepairInfo repairInfo);
+
+    Long getRepairCount(RepairInfo repairInfo);
+
 }

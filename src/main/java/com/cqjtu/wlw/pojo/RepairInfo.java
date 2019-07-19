@@ -1,12 +1,15 @@
 package com.cqjtu.wlw.pojo;
 
-public class RepairInfo {
+public class RepairInfo extends BaseBean{
     private Integer repairId;
     private String requestTime;
     private String startTime;
     private String reDetail;
     private String reReview;
     private Float repairGrade;
+
+    private String clientId;
+    private String workerId;
 
     private ClientInfo clientInfo;
     private WorkerInfo workerInfo;
@@ -75,5 +78,21 @@ public class RepairInfo {
 
     public void setWorkerInfo(WorkerInfo workerInfo) {
         this.workerInfo = workerInfo;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
+    }
+
+    public String getWorkerId() {
+        return workerId;
+    }
+
+    public void setWorkerId(String workerId) {
+        this.workerId = workerId;
     }
 }

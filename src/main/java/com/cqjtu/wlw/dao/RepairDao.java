@@ -39,4 +39,7 @@ public interface RepairDao {
      * @return 全部集合
      */
     List<RepairInfo> getRepairInfos(RepairInfo repairInfo);
+
+    Long getRepairCount(RepairInfo repairInfo);
+
 }

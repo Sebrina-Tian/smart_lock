@@ -1,14 +1,19 @@
 package com.cqjtu.wlw.controller;
 
+import com.cqjtu.wlw.pojo.RepairInfo;
 import com.cqjtu.wlw.pojo.WorkerInfo;
+import com.cqjtu.wlw.service.RepairService;
 import com.cqjtu.wlw.service.WorkerService;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -17,6 +22,8 @@ public class WorkerController extends BaseController{
 
     @Autowired//自动装配，将WorkerInfoService接口实现的类自动注入进来
     private WorkerService workerInfoService;
+    @Autowired
+    private RepairService repairService;
     /**
      * 处理访问老师模块主页的条件+分页查询的请求
      * @return
@@ -48,7 +55,25 @@ public class WorkerController extends BaseController{
         System.out.println(workerInfo);
         return workerInfo;
     }
+    @RequestMapping("/repair_list")
+    public void doPost(RepairInfo repairInfo, HttpServletResponse resp, HttpServletRequest request) {
+        try {
+            List<RepairInfo> list = repairService.getRepairInfos(repairInfo);
+            JSONArray data = JSONArray.fromObject(list);
+            resp.setCharacterEncoding("utf-8");
+            PrintWriter respWritter = resp.getWriter();
+            respWritter.append(data.toString());
 
+            System.out.println(list.get(1).getClientId());
+            System.out.println("成功");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("失败");
+
+        }
+    }
     /**
      * 根据条件查询职员信息
      * @param workerInfo {WorkerName 可能为空，可能不为空 WorkerPhone可能为空，可能不为空}
