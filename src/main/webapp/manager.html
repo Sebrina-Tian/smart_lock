@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +24,20 @@
 			var renderPage = true;
 		</script>
 
+		<style>
+			.white_content {
+				border-radius: 1.25rem;
+				display: none;
+				position: absolute;
+				width: 50%;
+				height: 50%;
+				padding: 10px;
+				background-color: rgba(0,0,0,0.65);
+				z-index: 1002;
+				overflow: auto;
+			}
+		</style>
+
 	</head>
 
 
@@ -38,7 +52,9 @@
 		</div>
 
 
-		<a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">go home</a>
+
+
+		<a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">back</a>
 		<!-- Page Content -->
 		<div class="container-fluid tm-main">
 			<div class="row tm-main-row">
@@ -125,50 +141,50 @@
 											</tr>
 											</thead>
 											<tbody id ="tab1">
-												<!--tr >
-													<th scope="row" style="text-align: center;">1</th>
-													<td style="text-align: center;">Mark</td>
-													<td style="text-align: center;">Otto</td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;">
-														<button id="delete1" class="btn tm-btn3"  style="color:red " >处理</button>
-													</td>
-												</tr-->
+											<!--tr >
+                                                <th scope="row" style="text-align: center;">1</th>
+                                                <td style="text-align: center;">Mark</td>
+                                                <td style="text-align: center;">Otto</td>
+                                                <td style="text-align: center;"> </td>
+                                                <td style="text-align: center;"> </td>
+                                                <td style="text-align: center;">
+                                                    <button id="delete1" class="btn tm-btn3"  style="color:red " >处理</button>
+                                                </td>
+                                            </tr-->
 											</tbody>
 										</table>
-                                        <script type="text/javascript">
-                                            function requestData1()
-                                            {   $("#tab1").html("");
-                                                $.ajax({
-                                                    url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
-                                                    type: "post",
-                                                    dataType: "json",
-                                                    contentType:"application/json;charset=utf-8",
-                                                    success: function(data){
-                                                        /*这个方法里是ajax发送请求成功之后执行的代码*/
-                                                        showData1(data);//我们仅做数据展示
-                                                    },
-                                                    error: function(msg){
-                                                        alert("ajax连接异常："+msg);
-                                                    }
-                                                });
-                                            }
-                                            function showData1(data)
-                                            {
-                                                var str = "";//定义用于拼接的字符串
-                                                for (var i = 0; i < data.length; i++)
-                                                {
-                                                    str = "<tr><td>" + data[i].clientInfo.clientName + "</td>" +
-                                                        "<td>" + data[i].requestTime + "</td>" +
-                                                        "<td>"+ data[i].clientInfo.clientAddr + "</td>" +
-                                                        "<td>" + data[i].clientInfo.reDetail + "</td>" +
-                                                        "<td>操作</td>" +
-                                                        "</tr>";
-                                                    $("#tab1").append(str);
-                                                }
-                                            }
-                                        </script>
+										<script type="text/javascript">
+											function requestData1()
+											{   $("#tab1").html("");
+												$.ajax({
+													url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
+													type: "post",
+													dataType: "json",
+													contentType:"application/json;charset=utf-8",
+													success: function(data){
+														/*这个方法里是ajax发送请求成功之后执行的代码*/
+														showData1(data);//我们仅做数据展示
+													},
+													error: function(msg){
+														alert("ajax连接异常："+msg);
+													}
+												});
+											}
+											function showData1(data)
+											{
+												var str = "";//定义用于拼接的字符串
+												for (var i = 0; i < data.length; i++)
+												{
+													str = "<tr><td>" + data[i].clientInfo.clientName + "</td>" +
+															"<td>" + data[i].requestTime + "</td>" +
+															"<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+															"<td>" + data[i].clientInfo.reDetail + "</td>" +
+															"<td>操作</td>" +
+															"</tr>";
+													$("#tab1").append(str);
+												}
+											}
+										</script>
 										</br>
 										<div class="form-group" align="center">
 											<a href="#" id="pageSizeSet1">设置</a>
@@ -187,7 +203,8 @@
 
 							</div>
 							<!-- data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item  -->
-                        </div></section>
+						</div>
+					</section>
 
 
 					<script type="text/javascript">
@@ -197,7 +214,7 @@
 								url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
 								type: "post",
 								dataType: "json",
-                                contentType:"application/json;charset=utf-8",
+								contentType:"application/json;charset=utf-8",
 								success: function(data){
 									/*这个方法里是ajax发送请求成功之后执行的代码*/
 									showData(data);//我们仅做数据展示
@@ -213,29 +230,31 @@
 							for (var i = 0; i < data.length; i++)
 							{
 								str = "<tr><td>" + data[i].repairId + "</td>" +
-                                    "<td>" + data[i].clientInfo.clientName + "</td>" +
-                                    "<td>"+ data[i].clientInfo.clientAddr + "</td>" +
-                                    "<td>" + data[i].requestTime + "</td>" +
-                                    "<td></td>" +
-                                    "</tr>";
+										"<td>" + data[i].clientInfo.clientName + "</td>" +
+										"<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+										"<td>" + data[i].requestTime + "</td>" +
+										"<td></td>" +
+										"</tr>";
 								$("#tab").append(str);
 							}
 						}
 					</script>
+
 					<!-- section 2订单处理中 -->
 					<section id="tm-section-2" class="tm-section tm-section-carousel">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
 							<header class="mb-4">
-								<h1 class="tm-text-shadow" align="center">订单处理</h1></br>
+								<h1 class="tm-text-shadow" align="center">订单处理</h1>
 							</header>
 							<div class="graph" style="margin-top: 0.8rem;">
 								<div class="form" align="right" style="padding-bottom: 2px">
 									<input class="input" name="clientName" type="text" placeholder="请输入客户Name" />
 									<button class="btn tm-btn3 tm-font-big" onclick="requestData2()">查询</button>
-								</div>>
+								</div>
 									<table class="table table-hover" style="-ms-text-size-adjust: auto">
 										<thead>
 										<tr style="text-align: center;">
+
 											<th width="100px">订单号</th>
 											<th width="100px">客户ID</th>
 											<th width="100px">工号</th>
@@ -256,37 +275,37 @@
 										</tr>
 										</tbody>
 									</table>
-                                    <script type="text/javascript">
-                                        function requestData2()
-                                        {   $("#tab2").html("");
-                                            $.ajax({
-                                                url: "http://localhost:8080/ssm_war_exploded/manager/repair_list2.d",
-                                                type: "post",
-                                                dataType: "json",
-                                                contentType:"application/json;charset=utf-8",
-                                                success: function(data){
-                                                    /*这个方法里是ajax发送请求成功之后执行的代码*/
-                                                    showData2(data);//我们仅做数据展示
-                                                },
-                                                error: function(msg){
-                                                    alert("ajax连接异常："+msg);
-                                                }
-                                            });
-                                        }
-                                        function showData2(data)
-                                        {
-                                            var str = "";//定义用于拼接的字符串
-                                            for (var i = 0; i < data.length; i++)
-                                            {
-                                                str = "<tr><td>" + data[i].repairId + "</td>" +
-                                                    "<td>" + data[i].clientId + "</td>" +
-                                                    "<td>"+ data[i].repairInfos.workerId + "</td>" +
-                                                    "<td>" + data[i].repairInfos.requestTime + "</td>" +
-                                                    "</tr>";
-                                                $("#tab2").append(str);
-                                            }
-                                        }
-                                    </script>
+									<script type="text/javascript">
+										function requestData2()
+										{   $("#tab2").html("");
+											$.ajax({
+												url: "http://localhost:8080/ssm_war_exploded/manager/repair_list2.d",
+												type: "post",
+												dataType: "json",
+												contentType:"application/json;charset=utf-8",
+												success: function(data){
+													/*这个方法里是ajax发送请求成功之后执行的代码*/
+													showData2(data);//我们仅做数据展示
+												},
+												error: function(msg){
+													alert("ajax连接异常："+msg);
+												}
+											});
+										}
+										function showData2(data)
+										{
+											var str = "";//定义用于拼接的字符串
+											for (var i = 0; i < data.length; i++)
+											{
+												str = "<tr><td>" + data[i].repairId + "</td>" +
+														"<td>" + data[i].clientId + "</td>" +
+														"<td>"+ data[i].repairInfos.workerId + "</td>" +
+														"<td>" + data[i].repairInfos.requestTime + "</td>" +
+														"</tr>";
+												$("#tab2").append(str);
+											}
+										}
+									</script>
 									</br>
 									<div class="form-group" align="center">
 										<a href="#" id="pageSizeSet2"> 设置 </a>
@@ -303,7 +322,7 @@
 								</div>
 							</div>
 					</section>
-				
+
 					<!-- section 3维修人员管理 -->
 					<section id="tm-section-3" class="tm-section">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
@@ -311,11 +330,49 @@
 								<h1 class="tm-text-shadow" align="center">维修人员管理</h1>
 							</header>
 							<div class="form-group" align="right">
-								<button type="button" class="btn tm-btn3">添加职工</button>
+								<!--button type="button" class="btn tm-btn3" onclick="jump1()">添加职工</button-->
+								<a href = "javascript:void(0)" class="btn tm-btn3" onclick = "document.getElementById('light').style.display='block';" >添加职工</a>
+
+								<div id="light" class="white_content">
+									<a class="button" href="#" onclick = "document.getElementById('light').style.display='none';" style="color:white; font-size: 1.25rem; border-radius: 0.5rem;">&nbsp;x&nbsp;</a>
+									<h3 class="text-center" style="color: white">录入职工信息</h3></br>
+									<form action=""  align="center" style="color: white">
+										<div class="form-group">
+											<label align="left">工号</label>
+											<input class="text-input" type="text" placeholder="" id="phone" style="border-radius: 0.5rem;"
+												   name="clientId" required="required"/>
+										</div>
+
+										<div class="form-group">
+											<label align="left">姓名</label>
+											<input class="text-input" type="password" placeholder="" id="pwd" style="border-radius: 0.5rem;"
+												   name="clientPassword" required="required"/>
+										</div>
+
+										<div class="form-group">
+											<label align="left">电话</label>
+											<input class="text-input" type="password" placeholder="" id="repwd" style="border-radius: 0.5rem;"
+												   required="required"/>
+										</div>
+
+										<div class="form-group">
+											<label align="left">地址</label>
+											<input class="text-input" type="text" placeholder="" id="doorId" style="border-radius: 0.5rem;"
+												   name="lockId" required="required"/>
+										</div>
+										<div class="form-group">
+											<button class="btn btn-primary" onclick="">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<a class="btn btn-danger" href="#" style="color: snow">取消</a>
+										</div>
+									</form>
+								</div>
+
 							</div>
+
 							<div class="graph" style="margin-top: 0.5rem;">
 								<div class="tables" style="font-size: 1rem;margin: 5px;">
 									<table class="table table-hover" style="-ms-text-size-adjust: auto">
+
 										<thead>
 										<tr style="text-align: center;">
 											<th width="80px">工号</th>
@@ -327,36 +384,36 @@
 										</tr>
 										</thead>
 										<tbody>
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete111" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete222" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete333" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
+										<tr style="align-content: center;">
+											<th scope="row" style="text-align: center;">1</th>
+											<td style="text-align: center;"> Mark</td>
+											<td style="text-align: center;"> otto</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete111" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" style="text-align: center;">2</th>
+											<td style="text-align: center;">Jacob</td>
+											<td style="text-align: center;">Thornton</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete222" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" style="text-align: center;">3</th>
+											<td style="text-align: center;">Larry</td>
+											<td style="text-align: center;">the Bird</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete333" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
 										</tbody>
 									</table>
 									</br>
@@ -377,7 +434,8 @@
 						</div>
 					</section>
 
-				
+
+
 					<!-- section 4员工绩效考核 -->
 					<section id="tm-section-4" class="tm-section">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
@@ -400,37 +458,37 @@
 										</tr>
 										</thead>
 										<tbody id="workerGradeList">
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete1111" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-										
-												<td style="text-align: center;">
-													<button id="delete2222" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete33333" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
+										<tr style="align-content: center;">
+											<th scope="row" style="text-align: center;">1</th>
+											<td style="text-align: center;"> Mark</td>
+											<td style="text-align: center;"> otto</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete1111" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" style="text-align: center;">2</th>
+											<td style="text-align: center;">Jacob</td>
+											<td style="text-align: center;">Thornton</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+
+											<td style="text-align: center;">
+												<button id="delete2222" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" style="text-align: center;">3</th>
+											<td style="text-align: center;">Larry</td>
+											<td style="text-align: center;">the Bird</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete33333" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
 										</tbody>
 									</table>
 									</br>
@@ -450,6 +508,7 @@
 							</div>
 						</div>
 					</section>
+
 					<!-- section 5 -->
 					<section id="tm-section-5" class="tm-section">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
@@ -473,39 +532,39 @@
 										</tr>
 										</thead>
 										<tbody>
-											<tr style="align-content: center;">
-												<th scope="row" style="text-align: center;">1</th>
-												<td style="text-align: center;"> Mark</td>
-												<td style="text-align: center;"> otto</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete7" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>																								
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete8" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;" >3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete9" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
+										<tr style="align-content: center;">
+											<th scope="row" style="text-align: center;">1</th>
+											<td style="text-align: center;"> Mark</td>
+											<td style="text-align: center;"> otto</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete7" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" style="text-align: center;">2</th>
+											<td style="text-align: center;">Jacob</td>
+											<td style="text-align: center;">Thornton</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete8" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row" style="text-align: center;" >3</th>
+											<td style="text-align: center;">Larry</td>
+											<td style="text-align: center;">the Bird</td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;"> </td>
+											<td style="text-align: center;">
+												<button id="delete9" class="btn tm-btn3"  style="color:red " >详情</button>
+											</td>
+										</tr>
 										</tbody>
 									</table>
 									</br>
@@ -525,12 +584,11 @@
 							</div>
 						</div>
 					</section>
-				</div> 
+				</div>
 				<!-- .tm-content -->
 
 
 			</div>
-
 
 
 
