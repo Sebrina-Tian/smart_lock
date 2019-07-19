@@ -1,14 +1,18 @@
 package com.cqjtu.wlw.controller;
 
 import com.cqjtu.wlw.pojo.ClientInfo;
+import com.cqjtu.wlw.pojo.UserInfo;
 import com.cqjtu.wlw.service.ClientService;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
@@ -17,7 +21,33 @@ public class ClientController {
 
     @Autowired//自动装配，将ClientService接口实现的类自动注入进来
     private ClientService clientService;
+    @RequestMapping("/check")
+    public String doPost(UserInfo userInfo,ClientInfo clientInfo, HttpServletResponse resp, HttpServletRequest request) {
+        try {
+            String user_id=userInfo.getUserId();
+            String user_password = userInfo.getUserPassword();
+            System.out.println("客户登录："+userInfo.getUserId()+"\t"+user_password);
 
+            clientInfo.setClientId(userInfo.getUserId().toString());
+            clientInfo = clientService.getClientById(clientInfo);
+
+            System.out.println(clientInfo.getClientPassword());
+
+            if(user_password==clientInfo.getClientPassword()){
+                JSONArray data = JSONArray.fromObject(clientInfo);
+                resp.setCharacterEncoding("utf-8");
+                PrintWriter respWritter = resp.getWriter();
+                respWritter.append(data.toString());
+                System.out.println("成功");
+                return "client";
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("失败");
+        }return "homepage";
+    }
     /**
      * 处理用户注册的请求
      * @param clientInfo
@@ -28,8 +58,9 @@ public class ClientController {
         System.out.println("执行ClientInfoController.doReg...");
         //获取前端的输入
         clientService.regClientInfo(clientInfo);
-        return "/homepage.html";
+        return "homepage";
     }
+
     /**
      * 处理用户注销的请求
      * @param clientInfo
@@ -88,6 +119,21 @@ public class ClientController {
         System.out.println(list);
         return "client";//跳转到client.html
     }
-
-
+    @RequestMapping("/family_list")
+    public void doPost2(ClientInfo clientInfo, HttpServletResponse resp, HttpServletRequest request) {
+        try {
+            List<ClientInfo> list = clientService.getClientInfos(clientInfo);//姓名、地址、手机号
+            JSONArray data = JSONArray.fromObject(list);
+            resp.setCharacterEncoding("utf-8");
+            PrintWriter respWritter = resp.getWriter();
+            respWritter.append(data.toString());
+            System.out.println(list.get(1).getClientId());
+            System.out.println("成功");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("失败");
+        }
+    }
 }

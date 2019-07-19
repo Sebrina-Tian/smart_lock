@@ -24,4 +24,7 @@ public interface WorkerDao {
     List<WorkerInfo> getWorkerInfos(WorkerInfo workerInfo);
 
     List<WorkerInfo> getWorkers();
+    /*====================增加的两个接口=================*/
+    List<WorkerInfo> selectRepairbyWorkerID(WorkerInfo workerInfo);
+    void updateGradeWorkerInfo(WorkerInfo workerInfo);
 }

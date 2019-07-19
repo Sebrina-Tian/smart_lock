@@ -1,7 +1,7 @@
 package com.cqjtu.wlw.pojo;
 
 public class UserInfo {
-    private Integer userId;
+    private String userId;
     private String userIdentity;
     private String userPassword;
 
@@ -14,11 +14,11 @@ public class UserInfo {
         this.userPassword = userPassword;
         System.out.println("调用UserInfo类的有参构造方法");
     }
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

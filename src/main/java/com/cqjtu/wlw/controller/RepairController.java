@@ -1,22 +1,17 @@
 package com.cqjtu.wlw.controller;
 
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cqjtu.wlw.pojo.UserInfo;
-import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cqjtu.wlw.pojo.RepairInfo;
-import com.cqjtu.wlw.pojo.ClientInfo;
 import com.cqjtu.wlw.service.RepairService;
 
 /**
