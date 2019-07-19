@@ -1,0 +1,166 @@
+body{
+
+	font-size: 12px;
+
+	font-family: "宋体";
+
+	background-image: url(../img/constructive_bg_01.jpg);
+
+	background-repeat: repeat-x;
+
+
+}
+
+
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	color: white;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+li {
+	list-style: none;
+}
+
+
+p {
+	color: #939393;
+	font-family: 'Raleway', sans-serif;
+	font-weight:300;
+	font-size: 14px;
+}
+
+a {
+	text-decoration: none !important;
+	transition: all 0.4s ease 0s;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+	outline: 0px !important;
+}
+
+
+
+
+/*			Services			*/
+
+
+.services {
+	width: 100%;
+	height: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.services h1 {
+	font-size: 40px;
+	color: #333;
+	text-align: center;
+}
+
+.bar {
+	border-bottom: 1px solid #d8d8d8;
+	width: 80%;
+	height: 1px;
+	margin: 20px auto;
+	margin-top: 50px;
+	text-align: center;
+}
+
+.bar i {
+	margin: 0px auto;
+	padding: 20px 40px;
+	font-size: 36px;
+	color: #d8d8d8;
+	margin-top: -40px;
+	background: #fff;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+
+
+
+span{height:40px; width:40px; display:block; position:relative;}
+
+.table-b table td{border:1px solid #F4F4F4}
+/* css注释：只对table td标签设置红色边框样式 */
+
+
+
+
+
+.container {
+	max-width: 1200px;
+}
+
+.container-1 {
+	width: 100%;
+	height: auto;
+	margin: 50px auto;
+	margin-bottom: 20px;
+	float: left;
+}
+
+
+
+
+
+/*		Team Page		*/
+
+.team {
+	width: 100%;
+	height: auto;
+	float: left;
+	margin-bottom: 80px;
+}
+
+.team h1 {
+	font-size: 28px;
+	margin-bottom: 30px;
+	color: #aaa;
+}
+
+.team-member {
+	width: 100%;
+	float: left;
+	height: auto;
+	margin-bottom: 30px;
+}
+
+.team-member h3 {
+	font-size: 18px;
+}
+
+.team-member h6 {
+	font-size: 16px;
+	margin-top: 0px;
+	text-align: left;
+	color: #aaa;
+}
+
+.team-member img {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+}
+
+/*			End Team			*/
+
+
+
+
+.footer {
+	width: 100%;
+	height: auto;
+	background: #383838;
+	padding: 40px 0px;
+	display: inline-block;
+}
+	
