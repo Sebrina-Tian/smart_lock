@@ -24,7 +24,11 @@ public interface WorkerDao {
     List<WorkerInfo> getWorkerInfos(WorkerInfo workerInfo);
 
     List<WorkerInfo> getWorkers();
-    /*====================增加的两个接口=================*/
-    List<WorkerInfo> selectRepairbyWorkerID(WorkerInfo workerInfo);
-    void updateGradeWorkerInfo(WorkerInfo workerInfo);
+
+    /**
+     * 用于登陆是查询用户是否存在及其密码
+     * @param workerInfo
+     * @return
+     */
+    WorkerInfo getWorkerByWorkerId(WorkerInfo workerInfo);
 }

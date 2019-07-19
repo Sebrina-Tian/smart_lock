@@ -1,6 +1,8 @@
 package com.cqjtu.wlw.dao;
 
 
-public interface ManagerDao {
+import com.cqjtu.wlw.pojo.ManagerInfo;
 
+public interface ManagerDao {
+    ManagerInfo getManagerInfoById(ManagerInfo managerInfo);
 }
