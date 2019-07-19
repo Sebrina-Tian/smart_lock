@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.wlw.dao.RepairDao"><!-- 表示该xml和哪个DAO接口对应 -->
+
+
+    <!-- 配置使自定义的DAO接口生效的方法 -->
+    <insert id="addRepairInfo" parameterType="RepairInfo">
+        <!-- insert方法，标签id和接口方法名相同，方法的形参的类型 -->
+        insert into repair(repair_id,request_time,client_id,start_time,re_detail,re_review,repair_grade,worker_id)
+        values(#{repairId},#{requestTime},#{clientId}#{startTime},#{repairDetail},#{reReview},#{repairGrade},#{workerId})
+        <!-- 表示接口的addStudentInfo方法要执行的sql语句，#{}表示从方法的形参里取值 -->
+    </insert>
+    
+    <delete id="deleteRepairInfo" parameterType="RepairInfo">
+		delete from
+		repair where repair_id = #{repairId}
+	</delete>
+    
+    <update id="updateRepairInfo" parameterType="RepairInfo">
+		update repair
+        <set>
+            <if test="startTime != null">
+                start_time = #{startTime},
+            </if>
+            <if test="reDetail != null">
+                re_detail=#{reDetail},
+            </if>
+            <if test="reReview != null">
+                start_time = #{startTime},
+            </if>
+            <if test="reDetail != null">
+                re_review=#{reReview},
+            </if>
+            <if test="repairGrade != 0">
+                repair_grade={#repairGrade,jdbcType=FLOAT },
+            </if>
+        </set>
+		where repair_id = #{repairId}
+	</update>
+
+
+    <resultMap type="RepairInfo" id="rmap">
+        <!-- type:对应的实体类 -->
+        <id column="repair_id" property="repairId"/>
+        <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+        <result column="request_time" property="requestTime" /><!--基本属性-->
+        <result column="start_time" property="startTime" />
+        <result column="repair_detail" property="repairDetail" />
+        <result column="repair_grade" property="repairGrade" />
+        <!--外键client_id-->
+        <association property="clientInfo" javaType="clientInfo">
+            <!-- property="school"定义在是bean中RepairInfo的外键 -->
+            <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
+            <id column="client_id" property="clientId"/><!-- 主键 -->
+            <result column="client_name" property="clientName"/><!-- 非主键 -->
+            <result column="client_password" property="clientPassword"/>
+            <result column="client_sex" property="clientSex"/><!-- 非主键 -->
+            <result column="client_addr" property="clientAddr"/><!-- 非主键 -->
+            <result column="client_phone" property="clientPhone"/><!-- 非主键 -->
+            <result column="client_photo" property="clientPhoto"/><!-- 非主键 -->
+            <result column="lock_id" property="lockId"/><!-- 非主键 -->
+        </association>
+        <!--外键worker_id-->
+        <association property="workerInfo" javaType="workerInfo">
+            <!-- property="school"定义在是bean中RepairInfo的外键 -->
+            <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
+            <id column="worker_id" property="workerId"/>
+            <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+            <result column="worker_name" property="workerName" />
+            <result column="worker_password" property="workerPassword" />
+            <result column="worker_sex" property="workerSex" />
+            <result column="worker_phone" property="workerPhone" />
+            <result column="worker_addr" property="workerAddr" />
+            <result column="worker_area" property="workerArea" />
+            <result column="worker_grade" property="workerGrade" />
+        </association>
+    </resultMap>
+
+    <select id="getRepairInfoById" parameterType="RepairInfo" resultMap="rmap">
+		select * from repair t1
+            left outer join client_info t2<!--内连接2张表-->
+                on t1.client_id = t2.client_id
+            left outer join worker_info t3
+                on t1.worker_id=t3.worker_id
+	    where repair_id=#{repairId}
+	</select>
+
+    <select id="getRepairInfos" parameterType="RepairInfo"
+            resultType="List" resultMap="rmap">
+        select * from repair t1
+        left outer join client_info t2<!--内连接2张表-->
+        on t1.client_id = t2.client_id
+        left outer join worker_info t3
+        on t1.worker_id=t3.worker_id
+        <where>
+            <if test="repairId != null and repairId !=''">
+                and repair_id like #{repairId}
+            </if>
+        </where>
+    </select>
+    <select id="getRepairCount" parameterType="RepairInfo"
+            resultType="Long"><!-- 计算出查询有多少条记录，为翻页做记号 -->
+        select count(*) from repair
+        <where>
+            <if test="RepairId != null and RepairId != 0">
+                and repair_id = #{repairId}
+            </if>
+        </where>
+    </select>
+</mapper>

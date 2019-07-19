@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqjtu.wlw.dao.ClientDao"><!-- 表示该xml和哪个DAO接口对应 -->
+
+
+    <!-- 配置使自定义的DAO接口生效的方法 -->
+    <!-- 配置addStudentInfo方法 -->
+    <insert id="addClientInfo" parameterType="ClientInfo">
+        <!-- insert方法，标签id和接口方法名相同，方法的形参的类型 -->
+        insert into client_info(client_id,client_name,client_password,client_sex,client_phone,client_addr,client_photo,lock_id)
+        values(#{clientId},#{clientName},#{clientPassword},#{clientSex},#{clientPhone},#{clientAddr},#{clientPhoto},#{lockId})
+        <!-- 表示接口的addStudentInfo方法要执行的sql语句，#{}表示从方法的形参里取值 -->
+    </insert>
+
+    <!-- 配置deleteStudentInfo方法 -->
+    <delete id="deleteClientInfo" parameterType="ClientInfo">
+		delete from
+		client_info where client_id = #{clientId}
+	</delete>
+
+    <!-- 配置updateStudentInfo方法 -->
+    <update id="updateClientInfo" parameterType="ClientInfo">
+		update client_info
+		set client_name = #{clientName},client_password=#{clientPassword},client_sex = #{clientSex},client_phone = #{clientPhone},
+		client_photo=#{clientPhoto},client_addr = #{clientAddr},lock_id= #{lock_id}
+		where client_id = #{clientId}
+	</update>
+
+
+    <resultMap type="ClientInfo" id="cmap">
+        <!-- type:对应的实体类 -->
+        <id column="client_id" property="clientId"/>
+        <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+        <result column="client_name" property="clientName" />
+        <result column="client_password" property="clientPassword" />
+        <result column="client_phone" property="clientPhone" />
+        <result column="client_sex" property="clientSex" />
+        <result column="client_addr" property="clientAddr" />
+        <!--作为lock_info外键lock_id,一对一-->
+        <association property="lockInfo" javaType="lockInfo">
+            <!-- property="school"定义在是bean中TeacherInfo的外键 -->
+            <!-- javaType="schoolInfo"映射外键关联的表，与bean中名称相同 -->
+            <id column="lock_id" property="lockId"/><!-- 主键 -->
+            <result column="lock_type" property="lockType"/><!-- 非主键 -->
+        </association>
+        <!--作为family_info表外键client_id,一对多-->
+        <collection property="familyInfos" ofType="FamilyInfo">
+            <id column="member_id" property="memberId"/>
+            <result column="member_name" property="memberName"/>
+            <result column="member_photo" property="memberPhoto" />
+        </collection>
+        <!--作为repair表外键client_id,一对多-->
+        <collection property="repairInfos" ofType="repairInfo">
+            <id column="repair_id" property="repairId"/>
+            <!-- column:对应是数据库中的名字,property属性对应的是实体类中的属性名 -->
+            <result column="request_time" property="requestTime" /><!--基本属性-->
+            <result column="start_time" property="startTime" />
+            <result column="repair_detail" property="repairDetail" />
+            <result column="repair_grade" property="repairGrade" />
+        </collection>
+    </resultMap>
+
+    <select id="getClientInfoById" parameterType="ClientInfo" resultMap="cmap">
+		select * from client_info t1,family_info t2,repair t3
+		where t1.client_id = t2.client_id and t1.client_id=t3.client_id and t1.client_id=#{clientId}
+	</select>
+
+
+    <select id="getClientInfos" parameterType="ClientInfo"
+            resultType="List" resultMap="cmap">
+        select * from client_info t1<!-- 只用姓名和电话查询 -->
+            inner join family_info t2<!--内连接2张表-->
+            on t1.client_id = t2.client_id
+            inner join repair t3
+            on t1.client_id = t3.client_id
+        <where>
+            <if test="clientName != null and clientName !=''">
+                and client_name like #{clientName}
+            </if>
+            <if test="clientPhone != null and clientPhone != ''">
+                and client_phone like #{clientPhone}
+            </if>
+        </where>
+    </select>
+
+    <select id="getClients"  resultMap="cmap">
+        select * from client_info t1
+            inner join family_info t2<!--内连接2张表-->
+                on t1.client_id = t2.client_id
+            inner join repair t3
+                on t1.client_id = t3.client_id
+	</select>
+
+    <!--select id="getClients"  resultMap="cmap">
+		select * from client_info t1
+		left outer join family_info t2
+		on t1.client_id = t2.client_id
+	</select-->
+
+</mapper>
