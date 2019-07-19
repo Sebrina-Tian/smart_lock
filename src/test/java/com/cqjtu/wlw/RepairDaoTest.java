@@ -35,7 +35,7 @@ public class RepairDaoTest {
         ClientInfo clientInfo = new ClientInfo();
 
         //repairInfo.setRepairId(123);//id自增
-        repairInfo.setRequestTime("null");
+        repairInfo.setRequestTime("2019/7/18_21:31");
         repairInfo.getClientInfo().setClientId("1");//有外键限制：1、错
         //下面可以为空
         //repairInfo.setReDetail("null");
@@ -48,6 +48,18 @@ public class RepairDaoTest {
 
     @Test
     public void test4(){
+        RepairInfo repairInfo = new RepairInfo();
+        repairInfo.setRepairId(1);//
+        List<RepairInfo> list = repairDao.getRepairInfos(repairInfo);
+        for(RepairInfo s : list){
+            System.out.println("s.repair_id = " + s.getRepairId());
+            System.out.println("s.client_id = " + s.getClientInfo().getClientId());
+            System.out.println("s.client_name = " + s.getClientInfo().getClientName());
+        }
+    }
+    //repair查询一对多
+    @Test
+    public void test5(){
         RepairInfo repairInfo = new RepairInfo();
         repairInfo.setRepairId(1);//
         List<RepairInfo> list = repairDao.getRepairInfos(repairInfo);
