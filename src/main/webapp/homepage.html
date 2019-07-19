@@ -27,14 +27,10 @@
     <link rel="stylesheet" href="css/responsive.css">
 
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
     <script type="text/javascript">
         function change() {
             var pic = document.getElementById("preview"),
-                    file = document.getElementById("file");
+                file = document.getElementById("img-upload");
             //得到后缀名
             var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
             // gif在IE浏览器暂时无法显示
@@ -43,7 +39,7 @@
                 return;
             }
             var isIE = navigator.userAgent.match(/MSIE/) != null,
-                    isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+                isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
 
             if (isIE) {
                 file.select();
@@ -55,7 +51,7 @@
                 } else {
                     // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
                     pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" +
-                            reallocalpath + "\")";
+                        reallocalpath + "\")";
                     // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
                     pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
                 }
@@ -82,9 +78,14 @@
         }
     </script>
 
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <[endif]-->
 </head>
 
 
@@ -284,14 +285,13 @@
                                     <div class="form-group">
                                         <label>上传人脸图片</label>
                                         <!--button class="btn btn-danger" data-dismiss="modal" >选择图片</button-->
-
                                         <div class="head-img">
-                                            <img id="preview" alt="" src="" name="pic" class="file_img"
-                                                 style="margin-top: 2px;margin-left: 12px; width: 150px; height: 120px;"/>
+                                            <input multiple type="file" name="uploadFile" onchange="change()"
+                                                   id="img-upload"/>
                                         </div>
-                                        <input multiple type="file" name="uploadFile" onchange="change()"
-                                               id="img-upload"/>
-                                        <button type="submit" class="btn btn-primary">点击上传</button>
+                                        <img id="preview" alt="" src="" name="pic" class="file_img"
+                                             style="margin-top: 2px;margin-left: 12px; width: 150px; height: 120px;"/>
+
                                     </div>
                                     </br>
                                     <div class="row">
