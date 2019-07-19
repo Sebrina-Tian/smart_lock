@@ -96,32 +96,33 @@
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
 							<div class="ml-auto">
 								<header class="mb-4">
-									<h1 class="tm-text-shadow" align="left">维修申请处理</h1>
+									<h1 class="tm-text-shadow" align="center">维修申请处理</h1></br>
 								</header>
 								<div class="graph" style="margin-top: 0.8rem;">
 									<div class="tables" style="font-size: 1rem;margin: 4px;">
-                                        <div class="form-group" align="right">
-                                            <input class="input" name="clientId" type="text" placeholder="请输入客户ID.." />
-                                            <select id="time" class="tm-select" style="color: lightgray;">
-                                                <option value="1">今天</option>
-                                                <option value="2">一天前</option>
-                                                <option value="3">两天前</option>
-                                                <option value="4">三天前</option>
-                                                <option value="5">其他</option>
-                                            </select>
-
-                                            <input class="input" name="repairId" type="text" placeholder="请输入维修工ID.." />
-                                            <button class="btn tm-btn3 tm-font-big" onclick="requestData1()">查询</button>
-                                        </div>
+										<div class="form-group" align="left">
+											<input class="input" name="clientId" type="text" placeholder="请输入客户ID.." />
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input class="input" name="repairId" type="text" placeholder="请输入维修工ID.." />
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<select id="time" class="tm-select" style="color: gray;">
+												<option value="1">今天</option>
+												<option value="2">一天前</option>
+												<option value="3">两天前</option>
+												<option value="4">三天前</option>
+												<option value="5">其他</option>
+											</select>
+											<button class="btn tm-btn3 tm-font-big" style="float: right" onclick="requestData1()">查询</button>
+										</div>
 										<table class="table table-hover" style="-ms-text-size-adjust: auto">
 											<thead>
-												<tr style="text-align: center;">
-													<th width="auto">姓名</th>
-													<th width="200px">申请时间</th>
-													<th width="200px">地址</th>
-													<th width="300px">故障详情</th>
-													<th width="100px" style="text-align: center;">操作</th>
-												</tr>
+											<tr style="text-align: center;">
+												<th width="100px">姓名</th>
+												<th width="200px">申请时间</th>
+												<th width="200px">地址</th>
+												<th width="300px">故障详情</th>
+												<th width="100px" style="text-align: center;">操作</th>
+											</tr>
 											</thead>
 											<tbody id ="tab1">
 												<!--tr >
