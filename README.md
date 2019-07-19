@@ -2,6 +2,25 @@
 
 每天下午下班之前请将自己改动的部分上传
 
+7.18
+wang：
+
+>参考学习ajax： https://www.cnblogs.com/baijinqiang/p/8594041.html
+
+## (1)Test调试完毕
+## (2)用ajax和后端连接
+* 模板里目前能对manager页面
+    第一个模块维修申请处理`manager/repairlist.d`
+    能够输入员工号查询
+* ==接下来看懂原理，复现==
+
+
+
+
+
+
+
+
 
 7.17
 wang：
