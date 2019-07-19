@@ -28,4 +28,8 @@ public interface WorkerService {
      * 根据id查询记录
      */
     WorkerInfo getWorkerById(WorkerInfo workerInfo);
+    /**
+     * 用于登陆
+     */
+    WorkerInfo getWorkerByWorkerId(WorkerInfo workerInfo);
 }

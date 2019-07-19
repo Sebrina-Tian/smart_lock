@@ -1,6 +1,7 @@
 package com.cqjtu.wlw.service;
 
 import com.cqjtu.wlw.pojo.ClientInfo;
+import com.cqjtu.wlw.pojo.RepairInfo;
 
 import java.util.List;
 
@@ -30,9 +31,21 @@ public interface ClientService {
      */
     List<ClientInfo> getClientInfos(ClientInfo clientInfo);
     /**
+     * 根据条件查询多条用户信息
+     * @param clientInfo
+     * @return
+     */
+    List<ClientInfo> getRepairClientInfos(ClientInfo clientInfo);
+    /**
      * 根据id查询学生记录
      * @param clientInfo
      * @return
      */
     ClientInfo getClientById(ClientInfo clientInfo);
+    /**
+     * 根据条件查询多条维修记录信息
+     * @param clientInfo
+     * @return
+     */
+    List<RepairInfo> getRepairInfosbyAddr(ClientInfo clientInfo);
 }
