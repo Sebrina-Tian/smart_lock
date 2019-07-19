@@ -11,80 +11,29 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
     <!-- Google web font "Open Sans" -->
     <link rel="stylesheet" href="../css/fontawesome-all.min.css">
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="../css/bootstrap1.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="../css/bootstrap-theme1.min.css">
     <link rel="stylesheet" type="text/css" href="../slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="../slick/slick-theme.css"/>
     <link rel="stylesheet" href="../css/tooplate-style.css">
     <link rel="stylesheet" href="../css/tooplate.css">
 
-
     <!-- unpkg视频播放 -->
     <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-    <script src="https://unpkg.com/video.js/dist/video.js"></script>
 
+    <!-- 警告弹窗 -->
+    <link rel="stylesheet" type="text/css" href="../css/sweet-alert.css">
 
-    <script type="text/javascript">
-        function change() {
-            var pic = document.getElementById("preview"),
-                file = document.getElementById("img-upload");
-            //得到后缀名
-            var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
-            // gif在IE浏览器暂时无法显示
-            if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
-                alert("图片的格式必须为png或者jpg或者jpeg格式！");
-                return;
-            }
-            var isIE = navigator.userAgent.match(/MSIE/) != null,
-                isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
-
-            if (isIE) {
-                file.select();
-                var reallocalpath = document.selection.createRange().text;
-
-                // IE6浏览器设置img的src为本地路径可以直接显示图片
-                if (isIE6) {
-                    pic.src = reallocalpath;
-                } else {
-                    // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
-                    pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" +
-                        reallocalpath + "\")";
-                    // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
-                    pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-                }
-            } else {
-                html5Reader(file);
-            }
-        }
-
-        function html5Reader(file) {
-            var file = file.files[0];
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function(e) {
-                var pic = document.getElementById("preview");
-                pic.src = this.result;
-            }
-        }
-    </script>
-
-    <script>
-        var renderPage = true;
-
-        if (navigator.userAgent.indexOf('MSIE') !== -1
-            || navigator.appVersion.indexOf('Trident/') > 0) {
-            /* Microsoft Internet Explorer detected in. */
-            alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
-            renderPage = false;
-        }
-
-    </script>
-
+    <!-- 编辑信息弹窗样式 -->
     <style>
         .white_content {
             border-radius: 1.25rem;
             display: none;
             position: absolute;
-            width: auto;
+            left: 180px; top: 250px;
+            width: 50%;
             height: auto;
             padding: 10px;
             background-color: rgba(0,0,0,0.65);
@@ -92,10 +41,6 @@
             overflow: auto;
         }
     </style>
-
-    <!-- 警告弹窗 -->
-    <script src="../js/sweet-alert.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/sweet-alert.css">
 
 
 
@@ -231,7 +176,29 @@
                             </div>
                         </div>
                     </form>
+                    <!-- 修改密码弹窗 -->
+                    <div id="change_pwd" class="white_content"  style="float: outside">
+                        <a class="button" href="#" onclick = "document.getElementById('change_pwd').style.display='none';" style="color:white; font-size: 1.25rem; border-radius: 0.5rem;">&nbsp;x&nbsp;</a>
+                        <h3 class="text-center" style="color: white">修改密码</h3></br>
+                        <form action=""  align="center" style="color: white">
+                            <div class="form-group">
+                                <label align="left">原密码</label>
+                                <input class="text-input" type="text" placeholder="请输入原始密码" id="phone" style="border-radius: 0.5rem;"
+                                       name="clientId" required="required"/>
+                            </div>
 
+                            <div class="form-group">
+                                <label align="left">新密码</label>
+                                <input class="text-input" type="password" placeholder="请设置新的密码" id="pwd" style="border-radius: 0.5rem;"
+                                       name="clientPassword" required="required"/>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" onclick="save_pwd()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="#" style="color: snow">取消</a>
+                            </div>
+                        </form>
+                    </div>
                     <!-- data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item  -->
                 </div>
 
@@ -239,29 +206,7 @@
 
 
 
-                <!-- 修改密码弹窗 -->
-                <div id="change_pwd" class="white_content">
-                    <a class="button" href="#" onclick = "document.getElementById('change_pwd').style.display='none';" style="color:white; font-size: 1.25rem; border-radius: 0.5rem;">&nbsp;x&nbsp;</a>
-                    <h3 class="text-center" style="color: white">修改密码</h3></br>
-                    <form action=""  align="center" style="color: white">
-                        <div class="form-group">
-                            <label align="left">原密码</label>
-                            <input class="text-input" type="text" placeholder="请输入原始密码" id="phone" style="border-radius: 0.5rem;"
-                                   name="clientId" required="required"/>
-                        </div>
 
-                        <div class="form-group">
-                            <label align="left">新密码</label>
-                            <input class="text-input" type="password" placeholder="请设置新的密码" id="pwd" style="border-radius: 0.5rem;"
-                                   name="clientPassword" required="required"/>
-                        </div>
-
-                        <div class="form-group">
-                            <button class="btn btn-primary" onclick="save_pwd()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="btn btn-danger" href="#" style="color: snow">取消</a>
-                        </div>
-                    </form>
-                </div>
 
             </section>
 
@@ -275,25 +220,25 @@
                     <!--a class="btn tm-btn1 tm-font-big" data-page="#tm-section-1">添加新成员</a-->
 
 
-                    <!--  -->
-                    <div id="member" class="white_content">
+                    <!-- 添加成员弹窗 -->
+                    <div id="member" class="white_content" style="float: top">
                         <a class="button" href="#" onclick = "document.getElementById('member').style.display='none';" style="color:white; font-size: 1.25rem; border-radius: 0.5rem;">&nbsp;x&nbsp;</a>
                         <h3 class="text-center" style="color: white">录入成员信息</h3></br>
                         <form action=""  align="center" style="color: white">
                             <div class="form-group">
-                                <label align="left">成员姓名</label>
-                                <input class="form-control popup__input" type="text" placeholder="请输入成员姓名" style="border-radius: 0.5rem;" />
+                                <label style="text-align: left">成员姓名</label>
+                                <input class="text-input" type="text" placeholder="请输入成员姓名" style="border-radius: 0.5rem;" />
                             </div>
 
                             <div class="form-group">
-                                <label align="left">成员身份</label>
-                                <input class="form-control popup__input" type="text" placeholder="请输入成员身份" style="border-radius: 0.5rem;" />
+                                <label style="text-align: left">成员身份</label>
+                                <input class="text-input" type="text" placeholder="请输入成员身份" style="border-radius: 0.5rem;" />
                             </div>
 
                             <div class="form-group">
-                                <label align="left">上传人脸图片</label>
+                                <label style="text-align: center">上传人脸图片</label>
                                 <!--button class="btn btn-danger" data-dismiss="modal" >选择图片</button-->
-                                <div class="head-img" align="left">
+                                <div class="head-img" align="center">
                                     <input multiple type="file" style="border-radius: 0.5rem;background-color: rgba(0,0,0,0.5)" name="uploadFile" onchange="change()"
                                            id="img-upload"/>
                                 </div>
@@ -355,70 +300,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- 删除成员弹窗 -->
-                <script>
-                    //$("#del${i.index}")
-                    // .click(
-                    //function() {
-                    function del_member() {
-                        swal({
-                                title: "确定删除该成员?",
-                                text: "删除后将不可修复！",
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#DD6B55",
-                                confirmButtonText: "确定删除!",
-                                closeOnConfirm: false
-                            },
-                            function(){
-                                swal("已删除", " ", "success");
-                                //window.location.href = "${basePath }teacher/update.d?teacherId=${t.teacherId }";
-                            });
-
-                    }//);
-
-
-                    <!-- 保存信息修改弹窗 -->
-
-                    //$("#del${i.index}")
-                    //.click(
-                    function save_info() {
-                        swal({
-                                title: "是否确定提交?",
-                                text: "您将修改个人信息，操作不可撤销!",
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#DD6B55",
-                                confirmButtonText: "Yes, save it!",
-                                closeOnConfirm: false
-                            },
-                            function(){
-                                swal("submitted!", " ", "success");
-                                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
-                            });
-                    }//);
-
-                    <!-- 保存密码修改弹窗 -->
-
-                    //$("#del${i.index}")
-                    //.click(
-                    function save_pwd() {
-                        swal({
-                                title: "是否确定提交?",
-                                text: "您将修改当前密码，操作不可撤销!",
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonColor: "#DD6B55",
-                                confirmButtonText: "Yes, save it!",
-                                closeOnConfirm: false
-                            },
-                            function(){
-                                swal("submitted!", " ", "success");
-                                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
-                            });
-                    }//);
-                </script>
 
             </section>
 
@@ -687,6 +568,137 @@
 <script type="text/javascript" src="../slick/slick.min.js"></script> <!-- Slick Carousel -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
 
+
+<!-- unpkg视频播放 -->
+<script src="https://unpkg.com/video.js/dist/video.js"></script>
+
+<!-- 警告弹窗 -->
+<script src="../js/sweet-alert.min.js"></script>
+
+<script type="text/javascript">
+    // 删除成员弹窗
+    //$("#del${i.index}")
+    // .click(
+    //function() {
+    function del_member() {
+        swal({
+                title: "确定删除该成员?",
+                text: "删除后将不可修复！",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmBackgroundColor: "#ffffff",
+                confirmButtonText: "确定删除!",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("已删除", " ", "success");
+                //window.location.href = "${basePath }teacher/update.d?teacherId=${t.teacherId }";
+            });
+
+    }//);
+
+
+    //保存信息修改弹窗
+
+    //$("#del${i.index}")
+    //.click(
+    function save_info() {
+        swal({
+                title: "是否确定提交?",
+                text: "您将修改个人信息，操作不可撤销!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmBackgroundColor: "#ffffff",
+                confirmButtonText: "Yes, save it!",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("submitted!", " ", "success");
+                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
+            });
+    }//);
+
+
+    //保存密码修改弹窗
+
+    //$("#del${i.index}")
+    //.click(
+    function save_pwd() {
+        swal({
+                title: "是否确定提交?",
+                text: "您将修改当前密码，操作不可撤销!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmBackgroundColor: "#ffffff",
+                confirmButtonText: "Yes, save it!",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("submitted!", " ", "success");
+                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
+            });
+    }//);
+</script>
+
+<!-- 文件上传——图片预览 -->
+<script type="text/javascript">
+    function change() {
+        var pic = document.getElementById("preview"),
+            file = document.getElementById("img-upload");
+        //得到后缀名
+        var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+        // gif在IE浏览器暂时无法显示
+        if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+            alert("图片的格式必须为png或者jpg或者jpeg格式！");
+            return;
+        }
+        var isIE = navigator.userAgent.match(/MSIE/) != null,
+            isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+
+        if (isIE) {
+            file.select();
+            var reallocalpath = document.selection.createRange().text;
+
+            // IE6浏览器设置img的src为本地路径可以直接显示图片
+            if (isIE6) {
+                pic.src = reallocalpath;
+            } else {
+                // 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+                pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" +
+                    reallocalpath + "\")";
+                // 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+                pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+            }
+        } else {
+            html5Reader(file);
+        }
+    }
+
+    function html5Reader(file) {
+        var file = file.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(e) {
+            var pic = document.getElementById("preview");
+            pic.src = this.result;
+        }
+    }
+</script>
+
+<script>
+    var renderPage = true;
+
+    if (navigator.userAgent.indexOf('MSIE') !== -1
+        || navigator.appVersion.indexOf('Trident/') > 0) {
+        /* Microsoft Internet Explorer detected in. */
+        alert("Please view this in a modern browser such as Chrome or Microsoft Edge.");
+        renderPage = false;
+    }
+
+</script>
 <script>
     var sidebarVisible = false;
     var currentPageID = "#tm-section-1";
