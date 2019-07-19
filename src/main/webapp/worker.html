@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -14,6 +13,30 @@
     <link rel="stylesheet" href="../css/fontawesome-all.min.css">
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- 警告弹窗 -->
+    <script src="../js/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/sweet-alert.css">
+    <!-- 弹窗 -->
+    <script>
+        //$("#acc${i.index}")
+        // .click(
+        function accept() {
+            swal({
+                    title: "是否确定接单?",
+                    text: "接单后请及时联系客户协商维修事宜，完成维修请及时提交维修详情。",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "确定接单!",
+                    closeOnConfirm: false
+                },
+                function(){
+                    swal("已接单!", "请及时完成", "success");
+                    window.location.href = "${basePath }teacher/update.d?teacherId=${t.teacherId }";
+                });
+
+        }//);
+    </script>
 
 
 </head>
@@ -160,8 +183,8 @@
                             "<td>" + data[i].clientInfo.clientName + "</td>" +
                             "<td>"+ data[i].clientInfo.clientAddr + "</td>" +
                             "<td>" + data[i].requestTime + "</td>" +
-                            "<td><a class=\"btn btn-success\" href=\"${basePath }teacher/update.d?teacherId=${t.teacherId }\">接单</a>\n" +
-                            "                        <button id=\"del${i.index }\" class=\"btn btn-danger\">维修完成</button></td>" +
+                            "<td><a class=\"btn btn-success\" onclick=\"accept()\" >接单</a>\n" + 
+                            "<button id=\"del${i.index }\" class=\"btn btn-danger\">维修完成</button></td>" +
                     "</tr>";
                         $("#tab").append(str);
                     }
