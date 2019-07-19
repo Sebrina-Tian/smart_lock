@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 		<!-- Font awesome css -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 		<link rel="stylesheet" href="css/animate.css">
 		<link rel="stylesheet" href="css/linecons.css">
 		<link rel="stylesheet" href="inc/strip/css/strip.css">
@@ -24,60 +26,6 @@
 		<link rel="stylesheet" href="css/style.css">
 		<!-- 警告弹窗 -->
 		<link rel="stylesheet" href="css/responsive.css">
-
-
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
-		<script type="text/javascript">
-			function change() {
-				var pic = document.getElementById("preview"),
-					file = document.getElementById("f");
-				//得到后缀名
-				var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
-				// gif在IE浏览器暂时无法显示
-				if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
-					alert("图片的格式必须为png或者jpg或者jpeg格式！");
-					return;
-				}
-				var isIE = navigator.userAgent.match(/MSIE/) != null,
-					isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
-
-				if (isIE) {
-					file.select();
-					var reallocalpath = document.selection.createRange().text;
-
-					// IE6浏览器设置img的src为本地路径可以直接显示图片
-					if (isIE6) {
-						pic.src = reallocalpath;
-					} else {
-						// 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
-						pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" +
-							reallocalpath + "\")";
-						// 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
-						pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
-					}
-				} else {
-					html5Reader(file);
-				}
-			}
-
-			function html5Reader(file) {
-				var file = file.files[0];
-				var reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = function(e) {
-					var pic = document.getElementById("preview");
-					pic.src = this.result;
-				}
-			}
-		</script>
-
-
-		<script>
-			    function jump(){
-        			window.location.href="#face";
-				}
-		</script>
-
 
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -112,7 +60,7 @@
 							<div class="popup" id="popup">
 								<div class="popup-inner">
 									<div class="popup__photo">
-										<img src="img/slide.jpg" src="img/slide.jpg" alt="">
+										<img src="img/slide.jpg" alt="" />
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">登 录</h1>
@@ -171,7 +119,7 @@
 							<div class="popup" id="regpopup">
 								<div class="popup-inner">
 									<div class="popup__photo">
-										<img src="img/slide.jpg" src="img/slide.jpg" alt=""/>
+										<img src="img/slide.jpg" alt=""/>
 									</div>
 
 									<div class="popup__text">
@@ -184,12 +132,12 @@
 											<p id="msg_phone" style="font-size:16px"></p>
 											<div class="form-group">
 												<label>密码</label>
-												<input class="form-control" type="password" placeholder="6~12位字母或数字" id="psw" name="clientPassword" required="required"/>
+												<input class="form-control" type="password" placeholder="6~12位字母或数字" id="pwd" name="clientPassword" required="required"/>
 											</div>
 											<p id="msg_pwd" style="font-size:16px"></p>
 											<div class="form-group">
 												<label>再次输入密码</label>
-												<input class="form-control" type="password" placeholder="6~12位字母或数字" id="repsw" required="required"/>
+												<input class="form-control" type="password" placeholder="6~12位字母或数字" id="repwd" required="required"/>
 											</div>
 											<p id="msg_repwd" style="font-size:16px"></p>
 											<div class="form-group">
@@ -204,9 +152,10 @@
 												</div>
 
 												<div class="col-sm-5">&nbsp;&nbsp;&nbsp;
-													<!--button class="btn btn-primary" href="#popup" onclick="checkAll()">注册</button>&nbsp;
-													<button class="btn btn-danger" data-dismiss="modal" onclick="cancel()">取消</button-->
-													<a class="btn btn-primary btn-lg" href="#popup" style="color: snow" onclick="checkAll()">注册</a>
+													<button class="btn btn-primary" onclick="checkAll()">注册</button >&nbsp;
+													<!--button class="btn btn-danger" data-dismiss="modal" onclick="cancel()">取消</button-->
+													<!--a class="btn btn-primary btn-lg" style="color: snow" onclick="checkAll()">注册</a-->
+													<!--input type="button" class="btn btn-primary" type="submit" value="注册" onclick="checkAll()" /-->
 													<a class="btn btn-danger btn-lg" href="#" style="color: snow">取消</a>
 												</div>
 											</div>
@@ -266,43 +215,89 @@
 							<div class="popup" id="facepopup">
 								<div class="popup-inner">
 									<div class="popup__photo">
-										<img src="img/slide.jpg" src="img/slide.jpg" alt="">
+										<img src="img/slide.jpg" alt="">
 									</div>
 									<div class="popup__text">
 										<h1 class="text-center">录入信息</h1>
-										<form class="form-group" action="">
+										<form action="file/doUpload.d" enctype="multipart/form-data" method="post">
 											<div class="form-group">
 												<label>输入虚拟姓名</label>
 												<input class="form-control" type="text" placeholder="例如:张三"/>
 											</div>
-
-
 											<div class="form-group">
 												<label>上传人脸图片</label>
 												<!--button class="btn btn-danger" data-dismiss="modal" >选择图片</button-->
-												<form action="">
+
 													<div class="head-img">
-														<input type="file" multiple id="f" type="file" name="f" onchange="change()" id="img-upload" />
+														<img id="preview" alt="" src="" name="pic" class="file_img" style="margin-top: 2px;margin-left: 12px; width: 150px; height: 120px;" />
 													</div>
-													<img id="preview" alt="" src="" name="pic" class="file_img" style="margin-top: 2px;margin-left: 12px; width: 150px; height: 120px;" />
-												</form>
-
+													<input multiple type="file" name="uploadFile" onchange="change()" id="img-upload" />
+													<button type="submit" class="btn btn-primary">点击上传</button>
 											</div>
-
 											</br>
 											<div class="row">
 												<div class="col-sm-9">
 													<a>请上传清晰的正脸图片 </a>
 												</div>
-
 												<div class="col-sm-3">
 													<!--a class="btn btn-primary" href="#face">点击体验</a>
 													<button class="btn btn-primary" type="submit" href="#face">登录</button-->
 													<input type="button" class="btn btn-primary" value="点击体验" onclick=javascrtpt:jump() />
 												</div>
 											</div>
-
 										</form>
+										<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+										<script type="text/javascript">
+											function change() {
+												var pic = document.getElementById("preview"),
+														file = document.getElementById("file");
+												//得到后缀名
+												var ext = file.value.substring(file.value.lastIndexOf(".") + 1).toLowerCase();
+												// gif在IE浏览器暂时无法显示
+												if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
+													alert("图片的格式必须为png或者jpg或者jpeg格式！");
+													return;
+												}
+												var isIE = navigator.userAgent.match(/MSIE/) != null,
+														isIE6 = navigator.userAgent.match(/MSIE 6.0/) != null;
+
+												if (isIE) {
+													file.select();
+													var reallocalpath = document.selection.createRange().text;
+
+													// IE6浏览器设置img的src为本地路径可以直接显示图片
+													if (isIE6) {
+														pic.src = reallocalpath;
+													} else {
+														// 非IE6版本的IE由于安全问题直接设置img的src无法显示本地图片，但是可以通过滤镜来实现
+														pic.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src=\"" +
+																reallocalpath + "\")";
+														// 设置img的src为base64编码的透明图片 取消显示浏览器默认图片
+														pic.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
+													}
+												} else {
+													html5Reader(file);
+												}
+											}
+
+											function html5Reader(file) {
+												var file = file.files[0];
+												var reader = new FileReader();
+												reader.readAsDataURL(file);
+												reader.onload = function(e) {
+													var pic = document.getElementById("preview");
+													pic.src = this.result;
+												}
+											}
+										</script>
+
+
+										<script>
+											function jump(){
+												window.location.href="#face";
+											}
+										</script>
+
 									</div>
 									<a class="popup__close" href="#">X</a>
 								</div>
@@ -486,7 +481,7 @@
 								</div>
 
 								<div class="article-footer">
-									<img src="img/author_1.jpg" alt="" class="author-thumb">
+									<img src="img/author_1.jpg"  alt="" class="author-thumb">
 									<p><a href="">张先生</a><br />05/07/2019</p>
 								</div>
 							</div>
@@ -777,6 +772,9 @@
 
 		<!-- jQuery main script -->
 		<script src="js/main.js"></script>
+
+
+
 
 
 	</body>

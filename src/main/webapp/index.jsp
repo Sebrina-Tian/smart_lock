@@ -32,12 +32,5 @@
         </tr>
     </c:forEach>
 </table>
-欢迎您，${user.userName },id=${id }
-<br>
-<h3>文件上传</h3>
-<a href="file/upload.d">文件上传</a>
-<br>
-<a href="file/files.d">查看所有文件</a>
-<br>
 </body>
 </html>

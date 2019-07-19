@@ -1,7 +1,7 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -98,19 +98,21 @@
 								<header class="mb-4">
 									<h1 class="tm-text-shadow" align="left">维修申请处理</h1>
 								</header>
-								<div class="form-group" align="right">
-									<input class="input" type="text" placeholder="请输入客户ID.." />
-									<select id="time" class="tm-select" style="color: lightgray;">
-										<option value="1">今天</option>
-										<option value="2">一天前</option>
-										<option value="3">两天前</option>
-										<option value="4">三天前</option>
-										<option value="5">其他</option>
-									</select>
-									<a href="#" class="btn tm-btn3 tm-font-big" data-nav-link="#tmNavLink2">查询</a>
-								</div>
 								<div class="graph" style="margin-top: 0.8rem;">
 									<div class="tables" style="font-size: 1rem;margin: 4px;">
+                                        <div class="form-group" align="right">
+                                            <input class="input" name="clientId" type="text" placeholder="请输入客户ID.." />
+                                            <select id="time" class="tm-select" style="color: lightgray;">
+                                                <option value="1">今天</option>
+                                                <option value="2">一天前</option>
+                                                <option value="3">两天前</option>
+                                                <option value="4">三天前</option>
+                                                <option value="5">其他</option>
+                                            </select>
+
+                                            <input class="input" name="repairId" type="text" placeholder="请输入维修工ID.." />
+                                            <button class="btn tm-btn3 tm-font-big" onclick="requestData1()">查询</button>
+                                        </div>
 										<table class="table table-hover" style="-ms-text-size-adjust: auto">
 											<thead>
 												<tr style="text-align: center;">
@@ -122,8 +124,8 @@
 													<th width="100px" style="text-align: center;">操作</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr >
+											<tbody id ="tab1">
+												<!--tr >
 													<th scope="row" style="text-align: center;">1</th>
 													<td style="text-align: center;">Mark</td>
 													<td style="text-align: center;">Otto</td>
@@ -131,30 +133,42 @@
 													<td style="text-align: center;"> </td>
 													<td style="text-align: center;">
 														<button id="delete1" class="btn tm-btn3"  style="color:red " >处理</button>
-													</td>																								
-												</tr>
-												<tr>
-													<th scope="row" style="text-align: center;">2</th>
-													<td style="text-align: center;">Jacob</td>
-													<td style="text-align: center;">Thornton</td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;">
-														<button id="delete2" class="btn tm-btn3"  style="color:red " >处理</button>
 													</td>
-												</tr>
-												<tr>
-													<th scope="row" style="text-align: center;">3</th>
-													<td style="text-align: center;">Larry</td>
-													<td style="text-align: center;">the Bird</td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;"> </td>
-													<td style="text-align: center;">
-														<button id="delete3" class="btn tm-btn3"  style="color:red " >处理</button>
-													</td>
-												</tr>
+												</tr-->
 											</tbody>
 										</table>
+                                        <script type="text/javascript">
+                                            function requestData1()
+                                            {   $("#tab1").html("");
+                                                $.ajax({
+                                                    url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
+                                                    type: "post",
+                                                    dataType: "json",
+                                                    contentType:"application/json;charset=utf-8",
+                                                    success: function(data){
+                                                        /*这个方法里是ajax发送请求成功之后执行的代码*/
+                                                        showData1(data);//我们仅做数据展示
+                                                    },
+                                                    error: function(msg){
+                                                        alert("ajax连接异常："+msg);
+                                                    }
+                                                });
+                                            }
+                                            function showData1(data)
+                                            {
+                                                var str = "";//定义用于拼接的字符串
+                                                for (var i = 0; i < data.length; i++)
+                                                {
+                                                    str = "<tr><td>" + data[i].clientInfo.clientName + "</td>" +
+                                                        "<td>" + data[i].requestTime + "</td>" +
+                                                        "<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+                                                        "<td>" + data[i].clientInfo.reDetail + "</td>" +
+                                                        "<td>操作</td>" +
+                                                        "</tr>";
+                                                    $("#tab1").append(str);
+                                                }
+                                            }
+                                        </script>
 										<div class="form-group" align="right">
 											<a href="#" id="pageSizeSet1">设置</a>
 											<a id="sjzl1"></a>
@@ -168,13 +182,46 @@
 											<a  href="#" id="btn55">跳转</a>
 										</div>
 									</div>
-								</div>					
+								</div>
+
 							</div>
 							<!-- data-nav-link holds the ID of nav item, which means this link should behave the same as that nav item  -->
-						</div>
-					</section>
-				
-					<!-- section 2 -->
+                        </div></section>
+
+
+					<script type="text/javascript">
+						function requestRepairData()
+						{   $("#tab").html("");
+							$.ajax({
+								url: "http://localhost:8080/ssm_war_exploded/manager/repair_list.d",
+								type: "post",
+								dataType: "json",
+                                contentType:"application/json;charset=utf-8",
+								success: function(data){
+									/*这个方法里是ajax发送请求成功之后执行的代码*/
+									showData(data);//我们仅做数据展示
+								},
+								error: function(msg){
+									alert("ajax连接异常："+msg);
+								}
+							});
+						}
+						function showData(data)
+						{
+							var str = "";//定义用于拼接的字符串
+							for (var i = 0; i < data.length; i++)
+							{
+								str = "<tr><td>" + data[i].repairId + "</td>" +
+                                    "<td>" + data[i].clientInfo.clientName + "</td>" +
+                                    "<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+                                    "<td>" + data[i].requestTime + "</td>" +
+                                    "<td></td>" +
+                                    "</tr>";
+								$("#tab").append(str);
+							}
+						}
+					</script>
+					<!-- section 2订单处理中 -->
 					<section id="tm-section-2" class="tm-section tm-section-carousel">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
 							<header class="mb-4">
@@ -182,8 +229,9 @@
 							</header>
 							<div class="graph" style="margin-top: 0.8rem;">
 								<div class="tables" style="font-size: 1rem;margin: 5px;">
+                                    <input class="input" name="clientName" type="text" placeholder="请输入客户Name" />
+                                    <button class="btn tm-btn3 tm-font-big" onclick="requestData2()">查询</button>
 									<table class="table table-hover" style="-ms-text-size-adjust: auto">
-										
 										<thead>
 											<tr style="text-align: center;">
 												
@@ -196,7 +244,7 @@
 												<th width="50px">  </th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="tab2">
 											<tr style="align-content: center;">
 												<th scope="row" style="text-align: center;">1</th>
 												<td style="text-align: center;"> Mark</td>
@@ -207,27 +255,39 @@
 													<button id="delete11" class="btn tm-btn3"  style="color:red " >详情</button>
 												</td>																								
 											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">2</th>
-												<td style="text-align: center;">Jacob</td>
-												<td style="text-align: center;">Thornton</td>
-												<td style="text-align: center;"> </td>
-							
-												<td style="text-align: center;">
-													<button id="delete22" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
-											<tr>
-												<th scope="row" style="text-align: center;">3</th>
-												<td style="text-align: center;">Larry</td>
-												<td style="text-align: center;">the Bird</td>
-												<td style="text-align: center;"> </td>
-												<td style="text-align: center;">
-													<button id="delete33" class="btn tm-btn3"  style="color:red " >详情</button>
-												</td>
-											</tr>
 										</tbody>
 									</table>
+                                    <script type="text/javascript">
+                                        function requestData2()
+                                        {   $("#tab2").html("");
+                                            $.ajax({
+                                                url: "http://localhost:8080/ssm_war_exploded/manager/repair_list2.d",
+                                                type: "post",
+                                                dataType: "json",
+                                                contentType:"application/json;charset=utf-8",
+                                                success: function(data){
+                                                    /*这个方法里是ajax发送请求成功之后执行的代码*/
+                                                    showData2(data);//我们仅做数据展示
+                                                },
+                                                error: function(msg){
+                                                    alert("ajax连接异常："+msg);
+                                                }
+                                            });
+                                        }
+                                        function showData2(data)
+                                        {
+                                            var str = "";//定义用于拼接的字符串
+                                            for (var i = 0; i < data.length; i++)
+                                            {
+                                                str = "<tr><td>" + data[i].repairId + "</td>" +
+                                                    "<td>" + data[i].clientId + "</td>" +
+                                                    "<td>"+ data[i].workerId + "</td>" +
+                                                    "<td>" + data[i].repairInfo.requestTime + "</td>" +
+                                                    "</tr>";
+                                                $("#tab2").append(str);
+                                            }
+                                        }
+                                    </script>
 									<div class="form-group" align="right">
 										<a href="#" id="pageSizeSet2"> 设置 </a>
 										<a id="sjzl2"></a>
@@ -245,7 +305,7 @@
 						</div>
 					</section>
 				
-					<!-- section 3 -->
+					<!-- section 3维修人员管理 -->
 					<section id="tm-section-3" class="tm-section">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
 							<header class="mb-4">
@@ -319,7 +379,7 @@
 					</section>
 
 				
-					<!-- section 4 -->
+					<!-- section 4员工绩效考核 -->
 					<section id="tm-section-4" class="tm-section">
 						<div class="tm-bg-transparent-black tm-contact-box-pad">
 							<header class="mb-4">
@@ -340,7 +400,7 @@
 												<th width="50px">  </th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="workerGradeList">
 											<tr style="align-content: center;">
 												<th scope="row" style="text-align: center;">1</th>
 												<td style="text-align: center;"> Mark</td>

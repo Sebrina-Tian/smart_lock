@@ -22,8 +22,7 @@
 
 <body>
 
-    <a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html">go home</a>
-
+    <a class="button" style="float: right;font-size:20px;color:white" href="../homepage.html" >&nbsp</a>
 
     <div class="services">
         <div class="container">
@@ -125,10 +124,53 @@
                 })
             </script>
 
-
+            <input class="input" name="repairId" type="text" placeholder="请输入维修工ID.." />
+            <button class="btn tm-btn3 tm-font-big" onclick="requestData()">查询</button>
+            <table id="tab" class="table table-hover" style="-ms-text-size-adjust: auto">
+                <tr>
+                    <th>区-小区</th>
+                    <th>地址（门牌）</th>
+                    <th>姓名</th>
+                    <th>电话</th>
+                    <th>操作</th>
+                </tr>
+            </table>
             <!-- 表格 -->
+            <script type="text/javascript">
+                function requestData()
+                {   $("#tab").html("");
+                    $.ajax({
+                        url: "http://localhost:8080/ssm_war_exploded/worker/repair_list.d",
+                        type: "post",
+                        dataType: "json",
+                        contentType:"application/json;charset=utf-8",
+                        success: function(data){
+                            /*这个方法里是ajax发送请求成功之后执行的代码*/
+                            showData(data);//我们仅做数据展示
+                        },
+                        error: function(msg){
+                            alert("ajax连接异常："+msg);
+                        }
+                    });
+                }
+                function showData(data)
+                {
+                    var str = "";//定义用于拼接的字符串
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        str = "<tr><td>" + data[i].repairId + "</td>" +
+                            "<td>" + data[i].clientInfo.clientName + "</td>" +
+                            "<td>"+ data[i].clientInfo.clientAddr + "</td>" +
+                            "<td>" + data[i].requestTime + "</td>" +
+                            "<td><a class=\"btn btn-success\" href=\"${basePath }teacher/update.d?teacherId=${t.teacherId }\">接单</a>\n" +
+                            "                        <button id=\"del${i.index }\" class=\"btn btn-danger\">维修完成</button></td>" +
+                    "</tr>";
+                        $("#tab").append(str);
+                    }
+                }
+            </script>
 
-            <table class="text-center table table-bordered table-hovered">
+            <!--table class="text-center table table-bordered table-hovered">
                 <tr>
                     <th>区-小区</th>
                     <th>地址（门牌）</th>
@@ -150,7 +192,7 @@
                         <button id="del${i.index }" class="btn btn-danger">维修完成</button>
                     </td>
                 </tr>
-            </table>
+            </table-->
             <!-- 表格完 -->
 
 
