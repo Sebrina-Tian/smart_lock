@@ -60,4 +60,9 @@ public class WorkerServiceImpl implements WorkerService {
         }
         return null;
     }
+
+    @Override
+    public WorkerInfo getWorkerByWorkerId(WorkerInfo workerInfo){
+        return workerDao.getWorkerInfoById(workerInfo);
+    }
 }
