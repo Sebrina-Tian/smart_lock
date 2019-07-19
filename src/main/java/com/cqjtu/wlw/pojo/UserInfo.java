@@ -30,7 +30,7 @@ public class UserInfo {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
-    public String show(String s1, String s2, Integer i3){
+    public String show(String s1, String s2, String i3){
         return s1 + s2 + i3;
     }
 
