@@ -32,7 +32,7 @@
             border-radius: 1.25rem;
             display: none;
             position: absolute;
-            left: 180px; top: 250px;
+            left: 170px; top: 288px;
             width: 50%;
             height: auto;
             padding: 10px;
@@ -194,7 +194,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-primary" onclick="save_pwd()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-primary" onclick="save_pwd()" style="color: snow">提交</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a class="btn btn-danger" href="#" style="color: snow">取消</a>
                             </div>
                         </form>
@@ -221,18 +221,18 @@
 
 
                     <!-- 添加成员弹窗 -->
-                    <div id="member" class="white_content" style="float: top">
+                    <div id="member" class="white_content">
                         <a class="button" href="#" onclick = "document.getElementById('member').style.display='none';" style="color:white; font-size: 1.25rem; border-radius: 0.5rem;">&nbsp;x&nbsp;</a>
                         <h3 class="text-center" style="color: white">录入成员信息</h3></br>
                         <form action=""  align="center" style="color: white">
                             <div class="form-group">
                                 <label style="text-align: left">成员姓名</label>
-                                <input class="text-input" type="text" placeholder="请输入成员姓名" style="border-radius: 0.5rem;" />
+                                <input class="text-input input-group-lg" type="text" placeholder="请输入成员姓名" style="border-radius: 0.5rem;" />
                             </div>
 
                             <div class="form-group">
                                 <label style="text-align: left">成员身份</label>
-                                <input class="text-input" type="text" placeholder="请输入成员身份" style="border-radius: 0.5rem;" />
+                                <input class="text-input text-lg-right" type="text" placeholder="请输入成员身份" style="border-radius: 0.5rem;" />
                             </div>
 
                             <div class="form-group">
@@ -247,7 +247,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-primary" onclick="add_member()">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-primary" onclick="add_member()" style="color: snow">提交</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a class="btn btn-danger" href="#" style="color: snow">取消</a>
                             </div>
                         </form>
@@ -275,7 +275,6 @@
                                     <td>Otto</td>
 
                                     <td style="text-align: center;">
-
                                         <button id="delete1" class="btn tm-btn2" style="color:red " onclick="del_member()">删除</button>
                                     </td>
                                 </tr>
@@ -347,8 +346,18 @@
                                 <div class="col-sm-6">
                                     <div class="tm-address-box">
                                         <br/>
-                                        <p>当前时间： 2019 / 7 / 12 &nbsp; 15：40：44</p>
-                                        <p>门锁状态：关闭</p>
+                                        <div class="row">
+                                            <p  align="left">当前时间：</p>
+                                            <label> 2019 / 7 / 12 &nbsp; 15：40：44</label>
+                                        </div>
+                                        <form action="">
+                                            <div class="row">
+                                                <p  align="left">门锁状态：</p>
+                                                <label id="open" style="display: block" value="0">关闭</label>
+                                                <label id="close" style="display: none" value="1">打开</label>
+                                                <!-- open()函数中设置判断语句 -->
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -356,9 +365,9 @@
                                     <div class="row">
                                         <div class="col-sm-6"></div>
                                         <div class="col-sm-6" style="writing-mode: tb-rl">
-                                            <button type="submit" class="btn tm-btn2">&nbsp;&nbsp;&nbsp;&nbsp;开门&nbsp;&nbsp;&nbsp;</button>
+                                            <button class="btn tm-btn2" onclick="open_door()">&nbsp;&nbsp;&nbsp;&nbsp;开门&nbsp;&nbsp;&nbsp;</button>
                                             <button id="record_btn" type="submit" class="btn tm-btn2"
-                                                    onclick="record_btn">访客记录
+                                                    href="#tm-section-4">访客记录
                                             </button>
                                         </div>
                                     </div>
@@ -374,16 +383,16 @@
 
                 <div class="tm-bg-transparent-black tm-contact-box-pad">
                     <header>
-                        <h1 class="tm-text-shadow" align="center">人脸识别记录</h1>
+                        <h1 class="tm-text-shadow" align="center">人脸识别记录</h1></br>
                     </header>
 
-                    <div class="row" style="padding-bottom: 2px">
+                    <div class="row"  style="margin-bottom: 4px">
                         <div class="col-sm-4" >
                             <input type="text" id="contact_name1" name="contact_name" class="form-control"
-                                   placeholder="请输入关键字" required="" style="padding-bottom: 2px">
+                                   placeholder="请输入关键字" required="">
                         </div>
                         <div class="col-sm-4">
-                            <select class="btn btn-group-sm" style="padding-bottom: 2px">
+                            <select class="btn btn-group-sm">
                                 <option value="volvo">一月</option>
                                 <option value="saab">二月</option>
                                 <option value="opel">三月</option>
@@ -391,19 +400,19 @@
                             </select>
                         </div>
                         <div class="col-sm-4" align="right" >
-                            <a href="$" lianjie class="btn tm-btn1 tm-text-shadow" style="padding-bottom: 2px">查询</a>
+                            <a href="#" onclick="" class="btn tm-btn1" style="background-color: white ; color: black">查询</a>
                         </div>
                     </div>
 
 
-                    <div class="graph" style="margin-top: 3.125rem;">
+                    <div class="graph">
 
                         <div class="tables">
                             <table class="table table-hover">
 
                                 <thead>
                                 <tr>
-                                    <th width="80px">编号</th>
+                                    <th width="70px">编号</th>
                                     <th width="300px">时间</th>
                                     <th width="200px">人脸识别结果</th>
                                     <th width="100px" style="text-align: center;">操作</th>
@@ -470,7 +479,7 @@
                                         <textarea id="contact_message22" name="contact_message" class="form-control"
                                                   rows="9" placeholder="Message" required></textarea>
                                     </div>
-                                    <button type="submit" class="btn tm-btn-submit tm-btn ml-auto">提交</button>
+                                    <button type="submit" class="btn tm-btn-submit tm-btn ml-auto"  onclick="sub_application()">提交</button>
                                 </form>
                             </div>
                             <div class="tm-address-box">
@@ -529,7 +538,7 @@
                                         <textarea id="contact_message" name="contact_message" class="form-control"
                                                   rows="9" placeholder="请在此输入反馈信息" required></textarea>
                                     </div>
-                                    <button type="submit" class="btn tm-btn-submit tm-btn ml-auto">提交</button>
+                                    <button type="submit" class="btn tm-btn-submit tm-btn ml-auto" onclick="sub_score()">提交</button>
                                 </form>
                             </div>
                             </br>
@@ -576,7 +585,60 @@
 <script src="../js/sweet-alert.min.js"></script>
 
 <script type="text/javascript">
-    // 删除成员弹窗
+    //修改个人信息——保存信息修改弹窗
+    //$("#del${i.index}")
+    //.click(
+    function save_info() {
+        swal({
+                title: "是否确定保存?",
+                text: "您将修改个人信息，操作不可撤销!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmBackgroundColor: "#ffffff",
+                confirmButtonText: "确定!",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("修改成功!", " ", "success");
+                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
+            });
+    }//);
+
+
+    //修改个人信息——确认修改密码弹窗
+    //$("#del${i.index}")
+    //.click(
+    function save_pwd() {
+        swal({
+                title: "是否确定修改?",
+                text: "您将修改当前密码，操作不可撤销!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmBackgroundColor: "#ffffff",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("修改成功!", " ", "success");
+                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
+            });
+    }//);
+
+
+    // 修改家庭成员——添加成员成功提示弹窗
+    function add_member() {
+        swal({
+            title: "添加成功！",
+            text: "您已成功添加该成员，可以继续操作。",
+            type: "success",
+            //window.location.href = "${basePath }teacher/update.d?teacherId=${t.teacherId }";
+        });
+    }//);
+
+
+    // 修改家庭成员——删除成员弹窗
     //$("#del${i.index}")
     // .click(
     //function() {
@@ -598,49 +660,48 @@
 
     }//);
 
-
-    //保存信息修改弹窗
+    //在线监控&控制——确认开门弹窗
 
     //$("#del${i.index}")
     //.click(
-    function save_info() {
+    function open_door() {
         swal({
-                title: "是否确定提交?",
-                text: "您将修改个人信息，操作不可撤销!",
+                title: "是否确定开门?",
+                text: "您将打开房门，此为危险操作!",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmBackgroundColor: "#ffffff",
-                confirmButtonText: "Yes, save it!",
+                confirmButtonText: "确定打开",
                 closeOnConfirm: false
             },
             function(){
-                swal("submitted!", " ", "success");
+                swal("已打开!", " ", "success");
                 //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
             });
     }//);
 
 
-    //保存密码修改弹窗
-
-    //$("#del${i.index}")
-    //.click(
-    function save_pwd() {
+    // 故障修理申请——提交成功提示弹窗
+    function sub_application() {
         swal({
-                title: "是否确定提交?",
-                text: "您将修改当前密码，操作不可撤销!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmBackgroundColor: "#ffffff",
-                confirmButtonText: "Yes, save it!",
-                closeOnConfirm: false
-            },
-            function(){
-                swal("submitted!", " ", "success");
-                //window.location.href = "${basePath}teacher/delete.d?teacherId=${t.teacherId}";
+                title: "提交成功！",
+                text: "将为您分配维修人员，请耐心等待维修人员与您联系，维修结束后请向对该员工进行评价。",
+                type: "success",
+                //window.location.href = "${basePath }teacher/update.d?teacherId=${t.teacherId }";
             });
     }//);
+
+    // 维修进度查询&维修评分——提交成功提示弹窗
+    function sub_score() {
+        swal({
+            title: "提交成功！",
+            text: "您已成功提交对该员工的维修评价，如有问题请即时联系我们。",
+            type: "success",
+            //window.location.href = "${basePath }teacher/update.d?teacherId=${t.teacherId }";
+        });
+    }//);
+
 </script>
 
 <!-- 文件上传——图片预览 -->
