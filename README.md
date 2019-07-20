@@ -8,7 +8,7 @@
 
 chen    14：20
 
-* client页面修改了引入css的<link>
+* client页面修改了引入css的<link
 * css文件中的"tooplate-style.css" 请替换css01中新上传的版本
 
 ## 
