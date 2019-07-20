@@ -269,8 +269,20 @@
 											<td style="text-align: center;"> otto</td>
 											<td style="text-align: center;"> </td>
 											<!--<td> </td>-->
+											<!--点击详情弹窗-->
 											<td style="text-align: center;">
-												<button id="delete11" class="btn tm-btn3"  style="color:red " >详情</button>
+												<a href = "javascript:void(0)"  style= "color:red;"class="btn tm-btn3" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">详情</a>
+												<div id="light1" class="white_content">
+													&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+													<a href = "javascript:void(0)"  style=" color:white;float:right;"  onclick = "document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">X</a>
+													</br></br>
+													<h4 align="left">申请详情</h4>
+													<div class="form-group">
+                                        <textarea id="contact_message" name="contact_message" class="form-control"
+												  rows="6" placeholder="请在此输入反馈信息" required></textarea>
+													</div>
+												</div>
+												<!--详情弹窗完-->
 											</td>
 										</tr>
 										</tbody>
@@ -390,9 +402,20 @@
 											<td style="text-align: center;"> otto</td>
 											<td style="text-align: center;"> </td>
 											<td style="text-align: center;"> </td>
+											<!--详情弹窗-->
 											<td style="text-align: center;">
-												<button id="delete111" class="btn tm-btn3"  style="color:red " >详情</button>
-											</td>
+												<a href = "javascript:void(0)"  style= "color:red;"class="btn tm-btn3" onclick = "document.getElementById('light2').style.display='block';document.getElementById('fade').style.display='block'">详情</a>
+												<div id="light2" class="white_content">
+													&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+													<a href = "javascript:void(0)"  style=" color:white;float:right;"  onclick = "document.getElementById('light2').style.display='none';document.getElementById('fade').style.display='none'">X</a>
+													</br></br>
+													<h4 align="left">维修详情</h4>
+													<div class="form-group">
+                                        <textarea id="contact_message1" name="contact_message1" class="form-control"
+												  rows="6" placeholder="请在此输入反馈信息" required></textarea>
+													</div>
+												</div>
+												<!--详情弹窗完-->
 										</tr>
 										<tr>
 											<th scope="row" style="text-align: center;">2</th>
