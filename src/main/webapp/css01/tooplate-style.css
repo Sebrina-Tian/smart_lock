@@ -10,6 +10,8 @@ body {
     background: #222222;
 }
 
+.divcsssss{font-family:"微软雅黑"}
+
 #preload-01 { background: url(../img/constructive_bg_01.jpg) no-repeat -9999px -9999px; }
 #preload-02 { background: url(../img/constructive_bg_02.jpg) no-repeat -9999px -9999px; }
 #preload-03 { background: url(../img/constructive_bg_03.jpg) no-repeat -9999px -9999px; }
@@ -42,7 +44,7 @@ p:last-child { margin-bottom: 0; }
     padding: 30px;
 }
 
-.tm-contact-box-pad { padding: 60px 55px; }
+.tm-contact-box-pad { padding: 50px 50px; }
 .tm-border-white { border: 1px solid white; }
 .media { align-items: center; }
 
@@ -190,15 +192,14 @@ p:last-child { margin-bottom: 0; }
 
 
 .tm-btn {
-    padding: 15px 50px;
-    font-size: 1.3rem;
-    font-weight: 300;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    font-weight: 200;
     background: transparent;
     border-color: white;
     color: white;
     cursor: pointer;
 }
-
 	
 .tm-btn3 {
 	padding: 3px 3px;
@@ -290,9 +291,9 @@ address { font-size: 1rem; }
     background: transparent;
     border-color: white;
     color: white;
-    font-weight: 300;
+    font-weight: 100;
     border-radius: 0;
-    padding: 15px;
+    padding: 5px;
 }
 
 .form-control:focus {
@@ -617,3 +618,8 @@ footer a { color: white; }
 .no-js #loader-wrapper {
     display: none;
 }
+
+
+.zhanghu{ color:black;}
+.table-b table td{border:1px solid #F4F4F4}
+/* css注释：只对table td标签设置白色边框样式 */
